@@ -1,0 +1,15 @@
+{
+  "name": "agarage/api",
+  "description": "blog",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Nicholas",
+      "email": "spirit.line.523@gmail.com"
+    }
+  ],
+  "require": {
+    "slim/slim": "^3.0"
+  }
+}
