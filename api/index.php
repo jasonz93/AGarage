@@ -18,4 +18,9 @@ $app->get('/', function (Request $request, Response $response) {
     return $response;
 });
 
+$app->get('/garage', function (Request $request, Response $response) {
+    $response->getBody()->write("You have entered this garage at "  . time() . ".");
+    return $response;
+});
+
 $app->run();
