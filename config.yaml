@@ -4,4 +4,5 @@ version: 1
 handle:
 
 #URL重写
-- rewrite: if(!-f && !-d && %{REQUEST_URI} ~* "api/(.*)" ) goto "/api/index.php/%1"
+- rewrite: if(!-f && !-d && %{REQUEST_URI} ~* "/api/(.*)" ) goto "/api/index.php/%1"
+- rewrite: if(%{REQUEST_URI} !~* "/(.*)") goto "/html/%1"
