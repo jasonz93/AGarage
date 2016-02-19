@@ -13,6 +13,8 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 $app = new Slim\App();
 
+require 'apps/V1/Site/routes.php';
+
 $app->get('/', function (Request $request, Response $response) {
     $response->getBody()->write("Hello world! Here is a garage.");
     return $response;
