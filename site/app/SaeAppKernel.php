@@ -17,12 +17,12 @@ class SaeAppKernel extends AppKernel
 {
     public function getCacheDir()
     {
-        return 'saekv:///var/cache/'.$this->getEnvironment();
+        return 'mysaekv:///var/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return 'saekv:///var/logs/'.$this->getEnvironment();
+        return 'mysaekv:///var/logs/'.$this->getEnvironment();
     }
 
     /**
