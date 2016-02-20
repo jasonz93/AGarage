@@ -297,6 +297,9 @@ class MySaeKVWrapper // implements WrapperInterface
         if ( $this->open( $path ) !== false ) {
             return $this->stat;
         } else {
+            if (self::DEBUG) {
+                sae_debug('Failed when get stat');
+            }
             return false;
         }
     }
