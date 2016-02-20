@@ -226,6 +226,7 @@ class MySaeKVWrapper // implements WrapperInterface
     {
         $path_to = rtrim(trim(substr(trim($path_to), 8)), '/');
         if (strpos($path_from, 'mysaekv://') === 0) {
+            sae_debug('Renaming inside kvdb.');
             $path_from = rtrim(trim(substr(trim($path_from), 8)), '/');
             sae_debug("Rename from $path_from to $path_to");
 
@@ -237,6 +238,7 @@ class MySaeKVWrapper // implements WrapperInterface
                 return false;
             }
         } else {
+            sae_debug('Renaming from outside to kvdb.');
             return false !== file_put_contents($path_to, file_get_contents($path_from));
         }
     }
