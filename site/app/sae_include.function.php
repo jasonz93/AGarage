@@ -1000,7 +1000,7 @@ class SaeStorageWrapper // implements WrapperInterface
     }
 
     public function mkdir($path, $mode, $options) {
-        return false;
+        return true;
     }
 
     public function rename($path_from, $path_to) {
