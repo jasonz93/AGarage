@@ -143,8 +143,16 @@ class MySaeKVWrapper // implements WrapperInterface
 
         if ( $this->save( $this->kvkey ) === true ) {
             $this->position += strlen($data);
+            if (self::DEBUG) {
+                sae_debug('Succeed to write stream to kvdb.');
+            }
             return strlen( $data );
-        } else return false;
+        } else {
+            if (self::DEBUG) {
+                sae_debug('Failed to write stream to kvdb.');
+            }
+            return false;
+        }
     }
 
     public function stream_close()
