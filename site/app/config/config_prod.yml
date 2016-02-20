@@ -5,7 +5,7 @@ framework:
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
-        save_path:   "saemc:///var/sessions/%kernel.environment%"
+        save_path:   "saekv:///var/sessions/%kernel.environment%"
 #    validation:
 #        cache: validator.mapping.cache.doctrine.apc
 #    serializer:
