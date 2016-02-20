@@ -1108,6 +1108,9 @@ class SaeKVWrapper // implements WrapperInterface
 
     public function stream_open( $path , $mode , $options , &$opened_path)
     {
+        if (self::DEBUG) {
+            sae_debug('Start to open kvdb stream.');
+        }
         $this->position = 0;
         $this->kvkey = rtrim(trim(substr(trim($path), 8)), '/');
         $this->mode = $mode;
