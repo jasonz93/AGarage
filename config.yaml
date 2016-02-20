@@ -4,4 +4,4 @@ version: 1
 handle:
 
 #URL重写
-- rewrite: if(!-f && !-d && %{REQUEST_URI} ~* "(.*)") goto "/site/web/app_dev.php/%1"
+- rewrite: if(!-f && !-d && %{REQUEST_URI} ~* "(.*)") goto "/site/web/app_dev_sae.php/%1"

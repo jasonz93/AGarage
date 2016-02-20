@@ -37,12 +37,12 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        return 'saemc:///var/cache/'.$this->getEnvironment();
+        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return 'saestor:///log/site';
+        return dirname(__DIR__).'/var/logs/'.$this->getEnvironment();
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
