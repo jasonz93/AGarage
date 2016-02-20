@@ -90,7 +90,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function stream_write($data)
     {
-        sae_debug('Start to write mc!');
+        sae_debug('Start to write mc stream.');
         if ( in_array( $this->mode, array( 'r', 'rb' ) ) ) {
             return false;
         }
@@ -111,7 +111,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function stream_close()
     {
-
+        sae_debug('Start to close mc stream.');
         memcache_set( $this->mc , $this->mckey.'.meta' ,  serialize($this->stat)  );
         //memcache_close( $this->mc );
     }
@@ -203,6 +203,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function rename($path_from , $path_to)
     {
+        sae_debug('Start to rename mc file.');
         $path_from = trim(substr($path_from, 8));
         $path_to = trim(substr($path_to, 8));
 
@@ -212,6 +213,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
         memcache_delete( $this->mc() , $path_from );
         memcache_delete( $this->mc() , $path_from.'.meta' );
         clearstatcache( true );
+        sae_debug('MC file renamed.');
         return true;
     }
 
