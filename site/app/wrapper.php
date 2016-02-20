@@ -30,7 +30,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
     {
         sae_debug('Opening mc stream.');
         $this->position = 0;
-        $this->mckey = trim(substr($path, 11));
+        $this->mckey = trim(substr($path, 10));
         $this->mode = $mode;
         $this->options = $options;
 
@@ -180,7 +180,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
     // ============================================
     public function mkdir($path , $mode , $options)
     {
-        $path = trim(substr($path, 11));
+        $path = trim(substr($path, 10));
 
 
         //echo "回调mkdir\n";
@@ -219,7 +219,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function rmdir($path , $options)
     {
-        $path = trim(substr($path, 11));
+        $path = trim(substr($path, 10));
 
 
         $path  = rtrim( $path  , '/' );
@@ -231,7 +231,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function unlink($path)
     {
-        $path = trim(substr($path, 11));
+        $path = trim(substr($path, 10));
         $path  = rtrim( $path  , '/' );
 
         memcache_delete( $this->mc() , $path );
@@ -242,7 +242,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function url_stat($path , $flags)
     {
-        $path = trim(substr($path, 11));
+        $path = trim(substr($path, 10));
         $path  = rtrim( $path  , '/' );
 
         if ( !$this->is_file_info_exists( $path ) ) {
