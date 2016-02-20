@@ -180,7 +180,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
     // ============================================
     public function mkdir($path , $mode , $options)
     {
-        $path = trim(substr($path, 8));
+        $path = trim(substr($path, 11));
 
 
         //echo "回调mkdir\n";
@@ -204,8 +204,8 @@ class MySaeMemcacheWrapper // implements WrapperInterface
     public function rename($path_from , $path_to)
     {
         sae_debug('Start to rename mc file.');
-        $path_from = trim(substr($path_from, 8));
-        $path_to = trim(substr($path_to, 8));
+        $path_from = trim(substr($path_from, 11));
+        $path_to = trim(substr($path_to, 11));
 
 
         memcache_set( $this->mc() , $path_to , memcache_get( $this->mc() , $path_from ) );
@@ -219,7 +219,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function rmdir($path , $options)
     {
-        $path = trim(substr($path, 8));
+        $path = trim(substr($path, 11));
 
 
         $path  = rtrim( $path  , '/' );
@@ -231,7 +231,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function unlink($path)
     {
-        $path = trim(substr($path, 8));
+        $path = trim(substr($path, 11));
         $path  = rtrim( $path  , '/' );
 
         memcache_delete( $this->mc() , $path );
@@ -242,7 +242,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function url_stat($path , $flags)
     {
-        $path = trim(substr($path, 8));
+        $path = trim(substr($path, 11));
         $path  = rtrim( $path  , '/' );
 
         if ( !$this->is_file_info_exists( $path ) ) {
