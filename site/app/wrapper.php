@@ -134,6 +134,9 @@ class MySaeKVWrapper // implements WrapperInterface
     public function stream_write($data)
     {
         if ( in_array( $this->mode, array( 'r', 'rb' ) ) ) {
+            if (self::DEBUG) {
+                sae_debug('Wrong mode when writing stream to kvdb.');
+            }
             return false;
         }
 
@@ -247,7 +250,9 @@ class MySaeKVWrapper // implements WrapperInterface
                 clearstatcache( true );
                 return $this->save( $path_to );
             } else {
-                sae_debug("rename({$path_from}, {$path_to}): No such key in KVDB.");
+                if (self::DEBUG) {
+                    sae_debug("rename({$path_from}, {$path_to}): No such key in KVDB.");
+                }
                 trigger_error("rename({$path_from}, {$path_to}): No such key in KVDB.", E_USER_WARNING);
                 return false;
             }
