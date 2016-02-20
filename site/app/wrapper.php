@@ -27,9 +27,6 @@ class MySaeKVWrapper // implements WrapperInterface
     }
 
     private function open( $key ) {
-        if (self::DEBUG) {
-            sae_debug('Reading kvdb.');
-        }
         $value = $this->kv()->get( $key );
         if ( $value !== false && $this->unpack_stat(substr($value, 0, 20)) === true ) {
             $this->kvcontent = substr($value, 20);
@@ -137,9 +134,6 @@ class MySaeKVWrapper // implements WrapperInterface
         $ret = substr( $this->kvcontent , $this->position, $count);
         $this->position += strlen($ret);
 
-        if (self::DEBUG) {
-            sae_debug('Succeed to read kvdb stream.');
-        }
         return $ret;
     }
 
@@ -158,9 +152,6 @@ class MySaeKVWrapper // implements WrapperInterface
 
         if ( $this->save( $this->kvkey ) === true ) {
             $this->position += strlen($data);
-            if (self::DEBUG) {
-                sae_debug('Succeed to write stream to kvdb.');
-            }
             return strlen( $data );
         } else {
             if (self::DEBUG) {
