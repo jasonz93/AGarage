@@ -20,6 +20,11 @@ class SaeAppKernel extends AppKernel
         return 'saekv:///var/cache/'.$this->getEnvironment();
     }
 
+    public function getLogDir()
+    {
+        return 'saekv:///var/logs/'.$this->getEnvironment();
+    }
+
     /**
      * Builds the service container.
      *
