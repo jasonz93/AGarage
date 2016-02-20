@@ -91,6 +91,9 @@ class MySaeKVWrapper // implements WrapperInterface
 
         if ( in_array( $this->mode, array( 'r', 'r+', 'rb' ) ) ) {
             if ( $this->open( $this->kvkey ) === false ) {
+                if (self::DEBUG) {
+                    sae_debug("fopen({$path}): No such key in KVDB.");
+                }
                 trigger_error("fopen({$path}): No such key in KVDB.", E_USER_WARNING);
                 return false;
             }
@@ -106,6 +109,9 @@ class MySaeKVWrapper // implements WrapperInterface
                 $this->kvcontent = '';
                 $this->statinfo_init();
             } else {
+                if (self::DEBUG) {
+                    sae_debug("fopen({$path}): Key exists in KVDB.");
+                }
                 trigger_error("fopen({$path}): Key exists in KVDB.", E_USER_WARNING);
                 return false;
             }
@@ -122,12 +128,18 @@ class MySaeKVWrapper // implements WrapperInterface
     public function stream_read($count)
     {
         if (in_array($this->mode, array('w', 'x', 'a', 'wb', 'xb', 'ab') ) ) {
+            if (self::DEBUG) {
+                sae_debug('Wrong mode when reading kvdb stream.');
+            }
             return false;
         }
 
         $ret = substr( $this->kvcontent , $this->position, $count);
         $this->position += strlen($ret);
 
+        if (self::DEBUG) {
+            sae_debug('Succeed to read kvdb stream.');
+        }
         return $ret;
     }
 
