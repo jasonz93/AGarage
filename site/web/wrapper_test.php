@@ -6,6 +6,6 @@
  * Time: 上午5:12
  */
 
-require_once __DIR__ . '/../app/SaeAppKernel.php';
+require_once __DIR__ . '/../app/wrapper.php';
 
 var_dump(file_put_contents('mysaemc://test.txt', 'test content'));
