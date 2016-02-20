@@ -30,7 +30,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
     {
         sae_debug('Opening mc stream.');
         $this->position = 0;
-        $this->mckey = trim(substr($path, 8));
+        $this->mckey = trim(substr($path, 11));
         $this->mode = $mode;
         $this->options = $options;
 
