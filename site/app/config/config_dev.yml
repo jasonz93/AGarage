@@ -22,9 +22,6 @@ monolog:
             type:   console
             bubble: false
             channels: [!event, !doctrine]
-        sae:
-            type:   sae
-            level: debug
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:
