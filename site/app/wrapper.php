@@ -32,6 +32,9 @@ class MySaeKVWrapper // implements WrapperInterface
             $this->kvcontent = substr($value, 20);
             return true;
         } else {
+            if (self::DEBUG) {
+                sae_debug('Failed when reading kvdb.');
+            }
             return false;
         }
     }
