@@ -324,6 +324,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
     }
 
     public function stream_cast($cast_as) {
+        sae_debug('Start to cast mc stream.');
         return false;
     }
 
