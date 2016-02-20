@@ -359,7 +359,7 @@ class MySaeKVWrapper // implements WrapperInterface
     }
 
     public function stream_flush() {
-        return false;
+        return true;
     }
 
     public function stream_lock($operation) {
