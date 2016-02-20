@@ -355,7 +355,7 @@ class MySaeKVWrapper // implements WrapperInterface
     }
 
     public function stream_cast($cast_as) {
-        return tmpfile();
+        return fopen(tempnam('agarage', 'stream'.$cast_as), 'rw');
     }
 
     public function stream_flush() {
