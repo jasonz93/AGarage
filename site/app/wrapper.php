@@ -234,6 +234,7 @@ class MySaeKVWrapper // implements WrapperInterface
                 clearstatcache( true );
                 return $this->save( $path_to );
             } else {
+                sae_debug("rename({$path_from}, {$path_to}): No such key in KVDB.");
                 trigger_error("rename({$path_from}, {$path_to}): No such key in KVDB.", E_USER_WARNING);
                 return false;
             }
