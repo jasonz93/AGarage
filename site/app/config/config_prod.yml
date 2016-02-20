@@ -1,7 +1,11 @@
 imports:
     - { resource: config.yml }
 
-#framework:
+framework:
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "saemc:///var/sessions/%kernel.environment%"
 #    validation:
 #        cache: validator.mapping.cache.doctrine.apc
 #    serializer:
