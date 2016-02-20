@@ -226,6 +226,7 @@ class MySaeKVWrapper // implements WrapperInterface
     {
         $path_from = rtrim(trim(substr(trim($path_from), 8)), '/');
         $path_to = rtrim(trim(substr(trim($path_to), 8)), '/');
+        sae_debug("Rename from $path_from to $path_to");
 
         if ( $this->open( $path_from ) === true ) {
             clearstatcache( true );
