@@ -50,7 +50,7 @@ class SaeAppKernel extends AppKernel
         $container->addCompilerPass(new AddClassesToCachePass($this));
         $container->addResource(new EnvParametersResource('SYMFONY__'));
 
-        $this->getContainer()->setParameter('twig.cache', new TwigSaeMCCache($this->getCacheDir().'/twig'));
+        $container->setParameter('twig.cache', new TwigSaeMCCache($this->getCacheDir().'/twig'));
 
         return $container;
     }
