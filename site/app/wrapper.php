@@ -224,16 +224,20 @@ class MySaeKVWrapper // implements WrapperInterface
 
     public function rename($path_from , $path_to)
     {
-        $path_from = rtrim(trim(substr(trim($path_from), 8)), '/');
         $path_to = rtrim(trim(substr(trim($path_to), 8)), '/');
-        sae_debug("Rename from $path_from to $path_to");
+        if (strpos($path_from, 'mysaekv://') === 0) {
+            $path_from = rtrim(trim(substr(trim($path_from), 8)), '/');
+            sae_debug("Rename from $path_from to $path_to");
 
-        if ( $this->open( $path_from ) === true ) {
-            clearstatcache( true );
-            return $this->save( $path_to );
+            if ( $this->open( $path_from ) === true ) {
+                clearstatcache( true );
+                return $this->save( $path_to );
+            } else {
+                trigger_error("rename({$path_from}, {$path_to}): No such key in KVDB.", E_USER_WARNING);
+                return false;
+            }
         } else {
-            trigger_error("rename({$path_from}, {$path_to}): No such key in KVDB.", E_USER_WARNING);
-            return false;
+            return false !== file_put_contents($path_to, file_get_contents($path_from));
         }
     }
 

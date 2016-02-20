@@ -13,11 +13,12 @@ use Symfony\Component\HttpKernel\DependencyInjection\AddClassesToCachePass;
 
 require_once 'wrapper.php';
 
+
 class SaeAppKernel extends AppKernel
 {
     public function getCacheDir()
     {
-        return 'saekv:///var/cache/'.$this->getEnvironment();
+        return 'mysaekv:///var/cache/'.$this->getEnvironment();
     }
 
     /**
@@ -50,7 +51,7 @@ class SaeAppKernel extends AppKernel
         $container->addCompilerPass(new AddClassesToCachePass($this));
         $container->addResource(new EnvParametersResource('SYMFONY__'));
 
-        $container->setParameter('twig.cache', new TwigSaeMCCache($this->getCacheDir().'/twig'));
+//        $container->setParameter('twig.cache', new TwigSaeMCCache($this->getCacheDir().'/twig'));
 
         return $container;
     }
