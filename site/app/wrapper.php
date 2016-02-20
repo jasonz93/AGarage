@@ -13,6 +13,7 @@ class MySaeKVWrapper // implements WrapperInterface
 {
     private $dir_mode = 16895 ; //040000 + 0222;
     private $file_mode = 33279 ; //0100000 + 0777;
+    private $kvkey;
 
 
     public function __construct() { }
