@@ -355,14 +355,14 @@ class MySaeKVWrapper // implements WrapperInterface
     }
 
     public function stream_cast($cast_as) {
-        return false;
+        return tmpfile();
     }
 
     public function stream_flush() {
         if (self::DEBUG) {
             sae_debug('Flushing kvdb stream.');
         }
-        return false;
+        return true;
     }
 
     public function stream_lock($operation) {
