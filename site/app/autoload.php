@@ -3,8 +3,6 @@
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Composer\Autoload\ClassLoader;
 
-require_once 'wrapper.php';
-
 /**
  * @var ClassLoader $loader
  */

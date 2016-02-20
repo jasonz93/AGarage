@@ -10,6 +10,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\AddClassesToCachePass;
  * Date: 16-2-21
  * Time: 上午4:10
  */
+
+require_once 'wrapper.php';
+
 class SaeAppKernel extends AppKernel
 {
     public function getCacheDir()
