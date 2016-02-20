@@ -24,7 +24,7 @@ use Symfony\Component\Debug\Debug;
 $loader = require __DIR__.'/../app/autoload.php';
 Debug::enable();
 
-$kernel = new SaeAppKernel('dev', true);
+$kernel = new SaeAppKernel('saedev', true);
 $kernel->loadClassCache();
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
