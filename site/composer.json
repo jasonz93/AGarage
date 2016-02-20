@@ -8,6 +8,7 @@
         },
         "classmap": [
             "app/AppKernel.php",
+            "app/SaeAppKernel.php",
             "app/AppCache.php"
         ]
     },
