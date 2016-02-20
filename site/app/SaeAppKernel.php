@@ -58,7 +58,7 @@ class SaeAppKernel extends AppKernel
     }
 }
 
-class ClassCollectionLoader
+class SaeClassCollectionLoader
 {
     private static $loaded;
     private static $seen;
