@@ -6,68 +6,110 @@
  * Time: 上午4:40
  */
 
-if ( ! in_array("mysaemc", stream_get_wrappers()) )
-    stream_wrapper_register("mysaemc", "MySaeMemcacheWrapper");
+if ( ! in_array("mysaekv", stream_get_wrappers()) )
+    stream_wrapper_register("mysaekv", "MySaeKVWrapper");
 
-class MySaeMemcacheWrapper // implements WrapperInterface
+class MySaeKVWrapper // implements WrapperInterface
 {
-    public $dir_mode = 16895 ; //040000 + 0222;
-    public $file_mode = 33279 ; //0100000 + 0777;
+    private $dir_mode = 16895 ; //040000 + 0222;
+    private $file_mode = 33279 ; //0100000 + 0777;
 
 
-    public function __construct()
-    {
-        $this->mc = memcache_init();
-        sae_debug('Memcache Wrapper initialized!');
+    public function __construct() { }
+
+    private function kv() {
+        if ( !isset( $this->kv ) ) $this->kv = new SaeKV();
+        $this->kv->init();
+        return $this->kv;
     }
 
-    public function mc() {
-        if ( !isset( $this->mc ) ) $this->mc = memcache_init();
-        return $this->mc;
+    private function open( $key ) {
+        $value = $this->kv()->get( $key );
+        if ( $value !== false && $this->unpack_stat(substr($value, 0, 20)) === true ) {
+            $this->kvcontent = substr($value, 20);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function save( $key ) {
+        $this->stat['mtime'] = $this->stat[9] = time();
+        if ( isset($this->kvcontent) ) {
+            $this->stat['size'] = $this->stat[7] = strlen($this->kvcontent);
+            $value = $this->pack_stat() . $this->kvcontent;
+        } else {
+            $this->stat['size'] = $this->stat[7] = 0;
+            $value = $this->pack_stat();
+        }
+        return $this->kv()->set($key, $value);
+    }
+
+    private function unpack_stat( $str ) {
+        $arr = unpack("L5", $str);
+
+        // check if valid
+        if ( $arr[1] < 10000 ) return false;
+        if ( !in_array($arr[2], array( $this->dir_mode, $this->file_mode ) ) ) return false;
+        if ( $arr[4] > time() ) return false;
+        if ( $arr[5] > time() ) return false;
+
+        $this->stat['dev'] = $this->stat[0] = 0x8003;
+        $this->stat['ino'] = $this->stat[1] = $arr[1];
+        $this->stat['mode'] = $this->stat[2] = $arr[2];
+        $this->stat['nlink'] = $this->stat[3] = 0;
+        $this->stat['uid'] = $this->stat[4] = 0;
+        $this->stat['gid'] = $this->stat[5] = 0;
+        $this->stat['rdev'] = $this->stat[6] = 0;
+        $this->stat['size'] = $this->stat[7] = $arr[3];
+        $this->stat['atime'] = $this->stat[8] = 0;
+        $this->stat['mtime'] = $this->stat[9] = $arr[4];
+        $this->stat['ctime'] = $this->stat[10] = $arr[5];
+        $this->stat['blksize'] = $this->stat[11] = 0;
+        $this->stat['blocks'] = $this->stat[12] = 0;
+
+        return true;
+    }
+
+    private function pack_stat( ) {
+        $str = pack("LLLLL", $this->stat['ino'], $this->stat['mode'], $this->stat['size'], $this->stat['ctime'], $this->stat['mtime']);
+        return $str;
     }
 
     public function stream_open( $path , $mode , $options , &$opened_path)
     {
-        sae_debug('Opening mc stream.');
         $this->position = 0;
-        $this->mckey = trim(substr($path, 10));
+        $this->kvkey = rtrim(trim(substr(trim($path), 10)), '/');
         $this->mode = $mode;
         $this->options = $options;
 
         if ( in_array( $this->mode, array( 'r', 'r+', 'rb' ) ) ) {
-            if ( $this->mccontent = memcache_get( $this->mc, $this->mckey ) ) {
-                $this->get_file_info( $this->mckey );
-                $this->stat['mode'] = $this->stat[2] = $this->file_mode;
-            } else {
-                trigger_error("fopen({$path}): failed to read from Memcached: No such key.", E_USER_WARNING);
+            if ( $this->open( $this->kvkey ) === false ) {
+                trigger_error("fopen({$path}): No such key in KVDB.", E_USER_WARNING);
                 return false;
             }
         } elseif ( in_array( $this->mode, array( 'a', 'a+', 'ab' ) ) ) {
-            if ( $this->mccontent = memcache_get( $this->mc , $this->mckey ) ) {
-                $this->get_file_info( $this->mckey );
-                $this->stat['mode'] = $this->stat[2] = $this->file_mode;
-                $this->position = strlen($this->mccontent);
+            if ( $this->open( $this->kvkey ) === true ) {
+                $this->position = strlen($this->kvcontent);
             } else {
-                $this->mccontent = '';
-                $this->stat['ctime'] = $this->stat[10] = time();
+                $this->kvcontent = '';
+                $this->statinfo_init();
             }
         } elseif ( in_array( $this->mode, array( 'x', 'x+', 'xb' ) ) ) {
-            if ( !memcache_get( $this->mc , $this->mckey ) ) {
-                $this->mccontent = '';
+            if ( $this->open( $this->kvkey ) === false ) {
+                $this->kvcontent = '';
                 $this->statinfo_init();
-                $this->stat['ctime'] = $this->stat[10] = time();
             } else {
-                trigger_error("fopen({$path}): failed to create at Memcached: Key exists.", E_USER_WARNING);
+                trigger_error("fopen({$path}): Key exists in KVDB.", E_USER_WARNING);
                 return false;
             }
         } elseif ( in_array( $this->mode, array( 'w', 'w+', 'wb' ) ) ) {
-            $this->mccontent = '';
+            $this->kvcontent = '';
             $this->statinfo_init();
-            $this->stat['ctime'] = $this->stat[10] = time();
         } else {
-            $this->mccontent = memcache_get( $this->mc , $this->mckey );
+            $this->open( $this->kvkey );
         }
-        sae_debug('MC stream opened!');
+
         return true;
     }
 
@@ -77,50 +119,38 @@ class MySaeMemcacheWrapper // implements WrapperInterface
             return false;
         }
 
-
-        $ret = substr( $this->mccontent , $this->position, $count);
+        $ret = substr( $this->kvcontent , $this->position, $count);
         $this->position += strlen($ret);
-
-        $this->stat['atime'] = $this->stat[8] = time();
-        $this->stat['uid'] = $this->stat[4] = 0;
-        $this->stat['gid'] = $this->stat[5] = 0;
 
         return $ret;
     }
 
     public function stream_write($data)
     {
-        sae_debug('Start to write mc stream.');
         if ( in_array( $this->mode, array( 'r', 'rb' ) ) ) {
             return false;
         }
 
-        $left = substr($this->mccontent, 0, $this->position);
-        $right = substr($this->mccontent, $this->position + strlen($data));
-        $this->mccontent = $left . $data . $right;
+        $left = substr($this->kvcontent, 0, $this->position);
+        $right = substr($this->kvcontent, $this->position + strlen($data));
+        $this->kvcontent = $left . $data . $right;
 
-        if ( memcache_set( $this->mc , $this->mckey , $this->mccontent ) ) {
-            $this->stat['mtime'] = $this->stat[9] = time();
-            $datalen = strlen($data);
-            $this->position += $datalen;
-            $this->stat['size'] = $this->stat[7] += $datalen;
+        if ( $this->save( $this->kvkey ) === true ) {
+            $this->position += strlen($data);
             return strlen( $data );
-        }
-        else return false;
+        } else return false;
     }
 
     public function stream_close()
     {
-        sae_debug('Start to close mc stream.');
-        memcache_set( $this->mc , $this->mckey.'.meta' ,  serialize($this->stat)  );
-        //memcache_close( $this->mc );
+        $this->save( $this->kvkey );
     }
 
 
     public function stream_eof()
     {
 
-        return $this->position >= strlen( $this->mccontent  );
+        return $this->position >= strlen( $this->kvcontent  );
     }
 
     public function stream_tell()
@@ -135,7 +165,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
         switch ($whence) {
             case SEEK_SET:
 
-                if ($offset < strlen( $this->mccontent ) && $offset >= 0) {
+                if ($offset < strlen( $this->kvcontent ) && $offset >= 0) {
                     $this->position = $offset;
                     return true;
                 }
@@ -157,8 +187,8 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
             case SEEK_END:
 
-                if (strlen( $this->mccontent ) + $offset >= 0) {
-                    $this->position = strlen( $this->mccontent ) + $offset;
+                if (strlen( $this->kvcontent ) + $offset >= 0) {
+                    $this->position = strlen( $this->kvcontent ) + $offset;
                     return true;
                 }
                 else
@@ -180,84 +210,54 @@ class MySaeMemcacheWrapper // implements WrapperInterface
     // ============================================
     public function mkdir($path , $mode , $options)
     {
-        $path = trim(substr($path, 10));
+        $path = rtrim(trim(substr(trim($path), 10)), '/');
 
-
-        //echo "回调mkdir\n";
-        $path  = rtrim( $path  , '/' );
-
-        $this->stat = $this->get_file_info( $path );
-        $this->stat['ctime'] = $this->stat[10] = time();
-        $this->stat['mode'] = $this->stat[2] = $this->dir_mode;
-
-        //echo "生成新的stat数据" . print_r( $this->stat , 1 );
-
-        memcache_set( $this->mc() , $path.'.meta' ,  serialize($this->stat)  );
-
-        //echo "写入MC. key= " . $path.'.meta ' .  memcache_get( $this->mc , $path.'.meta'  );
-        memcache_close( $this->mc );
-
-
-        return true;
+        if ( $this->open( $path ) === false ) {
+            $this->statinfo_init( false );
+            return $this->save( $path );
+        } else {
+            trigger_error("mkdir({$path}): Key exists in KVDB.", E_USER_WARNING);
+            return false;
+        }
     }
 
     public function rename($path_from , $path_to)
     {
-        sae_debug('Start to rename mc file.');
-        $path_from = trim(substr($path_from, 11));
-        $path_to = trim(substr($path_to, 11));
+        $path_from = rtrim(trim(substr(trim($path_from), 8)), '/');
+        $path_to = rtrim(trim(substr(trim($path_to), 8)), '/');
 
-
-        memcache_set( $this->mc() , $path_to , memcache_get( $this->mc() , $path_from ) );
-        memcache_set( $this->mc() , $path_to . '.meta' , memcache_get( $this->mc() , $path_from . '.meta' ) );
-        memcache_delete( $this->mc() , $path_from );
-        memcache_delete( $this->mc() , $path_from.'.meta' );
-        clearstatcache( true );
-        sae_debug('MC file renamed.');
-        return true;
+        if ( $this->open( $path_from ) === true ) {
+            clearstatcache( true );
+            return $this->save( $path_to );
+        } else {
+            trigger_error("rename({$path_from}, {$path_to}): No such key in KVDB.", E_USER_WARNING);
+            return false;
+        }
     }
 
     public function rmdir($path , $options)
     {
-        $path = trim(substr($path, 10));
+        $path = rtrim(trim(substr(trim($path), 10)), '/');
 
-
-        $path  = rtrim( $path  , '/' );
-
-        memcache_delete( $this->mc() , $path .'.meta'  );
         clearstatcache( true );
-        return true;
+        return $this->kv()->delete($path);
     }
 
     public function unlink($path)
     {
-        $path = trim(substr($path, 10));
-        $path  = rtrim( $path  , '/' );
+        $path = rtrim(trim(substr(trim($path), 10)), '/');
 
-        memcache_delete( $this->mc() , $path );
-        memcache_delete( $this->mc() , $path . '.meta' );
         clearstatcache( true );
-        return true;
+        return $this->kv()->delete($path);
     }
 
     public function url_stat($path , $flags)
     {
-        $path = trim(substr($path, 10));
-        $path  = rtrim( $path  , '/' );
+        $path = rtrim(trim(substr(trim($path), 10)), '/');
 
-        if ( !$this->is_file_info_exists( $path ) ) {
-            return false;
+        if ( $this->open( $path ) !== false ) {
+            return $this->stat;
         } else {
-            if ( $stat = memcache_get( $this->mc() , $path . '.meta' ) ) {
-                $this->stat = unserialize($stat);
-                if ( is_array($this->stat) ) {
-                    if ( $this->stat['mode'] == $this->dir_mode || $c = memcache_get( $this->mc(), $path ) ) {
-                        return $this->stat;
-                    } else {
-                        memcache_delete( $this->mc() , $path . '.meta' );
-                    }
-                }
-            }
             return false;
         }
     }
@@ -269,25 +269,10 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     // ============================================
 
-    public function is_file_info_exists( $path )
+    private function statinfo_init( $is_file = true )
     {
-        //echo "获取MC数据 key= " .  $path.'.meta' ;
-        $d = memcache_get( $this->mc() , $path . '.meta' );
-        //echo "\n返回数据为" . $d . "\n";
-        return $d;
-    }
-
-    public function get_file_info( $path )
-    {
-        if ( $stat = memcache_get( $this->mc() , $path . '.meta' ) )
-            return $this->stat =  unserialize($stat);
-        else $this->statinfo_init();
-    }
-
-    public function statinfo_init( $is_file = true )
-    {
-        $this->stat['dev'] = $this->stat[0] = 0x8002;
-        $this->stat['ino'] = $this->stat[1] = mt_rand(10000, PHP_INT_MAX);
+        $this->stat['dev'] = $this->stat[0] = 0x8003;
+        $this->stat['ino'] = $this->stat[1] = crc32(SAE_APPNAME . '/' . $this->kvkey);
 
         if( $is_file )
             $this->stat['mode'] = $this->stat[2] = $this->file_mode;
@@ -300,7 +285,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
         $this->stat['rdev'] = $this->stat[6] = 0;
         $this->stat['size'] = $this->stat[7] = 0;
         $this->stat['atime'] = $this->stat[8] = 0;
-        $this->stat['mtime'] = $this->stat[9] = 0;
+        $this->stat['mtime'] = $this->stat[9] = time();
         $this->stat['ctime'] = $this->stat[10] = 0;
         $this->stat['blksize'] = $this->stat[11] = 0;
         $this->stat['blocks'] = $this->stat[12] = 0;
@@ -324,7 +309,6 @@ class MySaeMemcacheWrapper // implements WrapperInterface
     }
 
     public function stream_cast($cast_as) {
-        sae_debug('Start to cast mc stream.');
         return false;
     }
 
