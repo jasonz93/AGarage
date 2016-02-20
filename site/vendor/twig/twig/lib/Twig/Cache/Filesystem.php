@@ -65,7 +65,7 @@ class Twig_Cache_Filesystem implements Twig_CacheInterface
 
         $tmpFile = tempnam($dir, basename($key));
         if (false !== @file_put_contents($tmpFile, $content) && @rename($tmpFile, $key)) {
-            @chmod($key, 0666 & ~umask());
+//            @chmod($key, 0666 & ~umask());
 
             if (self::FORCE_BYTECODE_INVALIDATION == ($this->options & self::FORCE_BYTECODE_INVALIDATION)) {
                 // Compile cached file into bytecode cache
