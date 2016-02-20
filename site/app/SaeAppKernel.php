@@ -11,14 +11,14 @@ use Symfony\Component\HttpKernel\DependencyInjection\AddClassesToCachePass;
  * Time: 上午4:10
  */
 
-//require_once 'wrapper.php';
-require_once 'sae_include.function.php';
+require_once 'wrapper.php';
+//require_once 'sae_include.function.php';
 
 class SaeAppKernel extends AppKernel
 {
     public function getCacheDir()
     {
-        return 'saekv:///var/cache/'.$this->getEnvironment();
+        return 'mysaekv:///var/cache/'.$this->getEnvironment();
     }
 
     /**

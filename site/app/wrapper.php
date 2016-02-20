@@ -11,6 +11,8 @@ if ( ! in_array("mysaekv", stream_get_wrappers()) )
 
 class MySaeKVWrapper // implements WrapperInterface
 {
+    const DEBUG = true;
+
     private $dir_mode = 16895 ; //040000 + 0222;
     private $file_mode = 33279 ; //0100000 + 0777;
     private $kvkey;
@@ -25,6 +27,9 @@ class MySaeKVWrapper // implements WrapperInterface
     }
 
     private function open( $key ) {
+        if (self::DEBUG) {
+            sae_debug('Reading kvdb.');
+        }
         $value = $this->kv()->get( $key );
         if ( $value !== false && $this->unpack_stat(substr($value, 0, 20)) === true ) {
             $this->kvcontent = substr($value, 20);
