@@ -50,6 +50,8 @@ class SaeAppKernel extends AppKernel
         $container->addCompilerPass(new AddClassesToCachePass($this));
         $container->addResource(new EnvParametersResource('SYMFONY__'));
 
+        $this->getContainer()->setParameter('twig.cache', new TwigSaeMCCache($this->getCacheDir().'/twig'));
+
         return $container;
     }
 
@@ -58,13 +60,6 @@ class SaeAppKernel extends AppKernel
         if (!$this->booted && is_file($this->getCacheDir().'/classes.map')) {
             SaeClassCollectionLoader::load(include($this->getCacheDir().'/classes.map'), $this->getCacheDir(), $name, $this->debug, false, $extension);
         }
-    }
-
-    public function boot()
-    {
-        $result = parent::boot();
-        $this->getContainer()->setParameter('twig.cache', new TwigSaeMCCache($this->getCacheDir().'/twig'));
-        return $result;
     }
 }
 
