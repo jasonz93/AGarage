@@ -67,7 +67,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
         } else {
             $this->mccontent = memcache_get( $this->mc , $this->mckey );
         }
-
+        sae_debug('MC stream opened!');
         return true;
     }
 
@@ -90,6 +90,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function stream_write($data)
     {
+        sae_debug('Start to write mc!');
         if ( in_array( $this->mode, array( 'r', 'rb' ) ) ) {
             return false;
         }

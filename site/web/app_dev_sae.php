@@ -21,8 +21,6 @@ use Symfony\Component\Debug\Debug;
 /**
  * @var Composer\Autoload\ClassLoader $loader
  */
-sae_debug('Test sae_debug');
-trigger_error('Test debug', E_USER_WARNING);
 
 
 $loader = require __DIR__.'/../app/autoload.php';
