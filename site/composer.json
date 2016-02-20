@@ -8,8 +8,8 @@
         },
         "classmap": [
             "app/AppKernel.php",
-            "app/SaeAppKernel.php",
-            "app/AppCache.php"
+            "app/AppCache.php",
+            "app/SaeAppKernel.php"
         ]
     },
     "autoload-dev": {

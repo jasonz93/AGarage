@@ -48,4 +48,33 @@ class SaeAppKernel extends AppKernel
 
         return $container;
     }
+
+    protected function doLoadClassCache($name, $extension)
+    {
+        if (!$this->booted && is_file($this->getCacheDir().'/classes.map')) {
+            SaeClassCollectionLoader::load(include($this->getCacheDir().'/classes.map'), $this->getCacheDir(), $name, $this->debug, false, $extension);
+        }
+    }
+}
+
+class SaeClassCollectionLoader extends \Symfony\Component\ClassLoader\ClassCollectionLoader
+{
+    /**
+     * Writes a cache file.
+     *
+     * @param string $file    Filename
+     * @param string $content Temporary file content
+     *
+     * @throws \RuntimeException when a cache file cannot be written
+     */
+    private static function writeCacheFile($file, $content)
+    {
+        $tmpFile = tempnam(dirname($file), basename($file));
+        if (false !== @file_put_contents($tmpFile, $content) && @rename($tmpFile, $file)) {
+
+            return;
+        }
+
+        throw new \RuntimeException(sprintf('Failed to write cache file "%s".', $file));
+    }
 }
