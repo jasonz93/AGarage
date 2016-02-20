@@ -6,12 +6,19 @@ var AppView = Backbone.View.extend({
     el: $('#garageapp'),
     initialize: function () {
         var testView = new AGarage.Views.Index({
+            el: $('#content'),
             ttt: 'test data'
         });
-        $('#content').append(testView.render().el);
+        testView.render();
         var configs = new AGarage.Collections.SiteConfigs();
-        configs.fetch();
-        console.log(configs);
+        var navbar = new AGarage.Views.Navbar({
+            el: $('#navbar'),
+            model: configs
+        });
+        navbar.render();
+        configs.fetch({
+            reset: true
+        });
     }
 });
 

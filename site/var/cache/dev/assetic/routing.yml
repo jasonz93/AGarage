@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /home/nicholas/PhpstormProjects/mygarage/1/site/app/config/routing_dev.yml

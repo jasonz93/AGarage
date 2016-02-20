@@ -13,7 +13,10 @@ $app->get('/v1/site', function (Request $request, Response $response) {
     $config = new \AGarage\V1\Site\Models\SiteConfig();
     $config->name = 'siteName';
     $config->value = '一间车库';
+    $config2 = new \AGarage\V1\Site\Models\SiteConfig();
+    $config2->name = 'test';
+    $config2->value = 'testVal';
     $res = new \AGarage\V1\Common\Models\APIResponse();
-    $res->data = array($config);
+    $res->data = array($config, $config2);
     return $res->inject($response);
 });
