@@ -1,4 +1,7 @@
 <?php
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Config\EnvParametersResource;
+use Symfony\Component\HttpKernel\DependencyInjection\AddClassesToCachePass;
 
 /**
  * Created by PhpStorm.
