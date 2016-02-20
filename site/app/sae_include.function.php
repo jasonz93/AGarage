@@ -1000,7 +1000,7 @@ class SaeStorageWrapper // implements WrapperInterface
     }
 
     public function mkdir($path, $mode, $options) {
-        return true;
+        return false;
     }
 
     public function rename($path_from, $path_to) {
@@ -1039,6 +1039,8 @@ or die( "Failed to register protocol" );
 
 class SaeKVWrapper // implements WrapperInterface
 {
+    const DEBUG = true;
+
     private $dir_mode = 16895 ; //040000 + 0222;
     private $file_mode = 33279 ; //0100000 + 0777;
 
@@ -1155,6 +1157,9 @@ class SaeKVWrapper // implements WrapperInterface
 
     public function stream_write($data)
     {
+        if (self::DEBUG) {
+            sae_debug('Start to write stream to kvdb.');
+        }
         if ( in_array( $this->mode, array( 'r', 'rb' ) ) ) {
             return false;
         }
