@@ -18,6 +18,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
     public function __construct()
     {
         $this->mc = memcache_init();
+        sae_debug('Memcache Wrapper initialized!');
     }
 
     public function mc() {
@@ -27,6 +28,7 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     public function stream_open( $path , $mode , $options , &$opened_path)
     {
+        sae_debug('Opening mc stream.');
         $this->position = 0;
         $this->mckey = trim(substr($path, 8));
         $this->mode = $mode;
