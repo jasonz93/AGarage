@@ -280,11 +280,7 @@ class SaeClassCollectionLoader
      */
     private static function writeCacheFile($file, $content)
     {
-        $tmpFile = tempnam(dirname($file), basename($file));
-        sae_debug($tmpFile);
-        sae_debug(@file_put_contents($tmpFile, $content) && @rename($tmpFile, $file));
-        sae_debug($tmpFile);
-        if (false !== @file_put_contents($tmpFile, $content) && @rename($tmpFile, $file)) {
+        if (false !== @file_put_contents($file, $content)) {
             //FIXED: SAE Compat
 //            @chmod($file, 0666 & ~umask());
 
