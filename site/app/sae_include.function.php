@@ -1054,6 +1054,9 @@ class SaeKVWrapper // implements WrapperInterface
     }
 
     private function open( $key ) {
+        if (self::DEBUG) {
+            sae_debug('Reading kvdb.');
+        }
         $value = $this->kv()->get( $key );
         if ( $value !== false && $this->unpack_stat(substr($value, 0, 20)) === true ) {
             $this->kvcontent = substr($value, 20);
