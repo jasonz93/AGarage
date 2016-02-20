@@ -239,6 +239,9 @@ class MySaeKVWrapper // implements WrapperInterface
             $this->statinfo_init( false );
             return $this->save( $path );
         } else {
+            if (self::DEBUG) {
+                sae_debug("mkdir({$path}): Key exists in KVDB.");
+            }
             trigger_error("mkdir({$path}): Key exists in KVDB.", E_USER_WARNING);
             return false;
         }
@@ -273,7 +276,14 @@ class MySaeKVWrapper // implements WrapperInterface
         $path = rtrim(trim(substr(trim($path), 10)), '/');
 
         clearstatcache( true );
-        return $this->kv()->delete($path);
+        if ($this->kv()->delete($path)) {
+            return true;
+        } else {
+            if (self::DEBUG) {
+                sae_debug('Failed when rmdir.');
+            }
+            return false;
+        }
     }
 
     public function unlink($path)
