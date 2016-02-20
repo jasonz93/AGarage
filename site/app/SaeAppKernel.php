@@ -12,7 +12,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\AddClassesToCachePass;
  */
 
 require_once 'wrapper.php';
-//require_once 'sae_include.function.php';
 
 class SaeAppKernel extends AppKernel
 {
@@ -28,40 +27,40 @@ class SaeAppKernel extends AppKernel
      *
      * @throws \RuntimeException
      */
-    protected function buildContainer()
-    {
-        foreach (array('cache' => $this->getCacheDir()) as $name => $dir) {
-            if (!is_dir($dir)) {
-                if (false === @mkdir($dir, 0777, true) && !is_dir($dir)) {
-                    throw new \RuntimeException(sprintf("Unable to create the %s directory (%s)\n", $name, $dir));
-                }
-            } elseif (!is_writable($dir)) {
-                throw new \RuntimeException(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
-            }
-        }
-
-        $container = $this->getContainerBuilder();
-        $container->addObjectResource($this);
-        $this->prepareContainer($container);
-
-        if (null !== $cont = $this->registerContainerConfiguration($this->getContainerLoader($container))) {
-            $container->merge($cont);
-        }
-
-        $container->addCompilerPass(new AddClassesToCachePass($this));
-        $container->addResource(new EnvParametersResource('SYMFONY__'));
-
-//        $container->setParameter('twig.cache', new TwigSaeMCCache($this->getCacheDir().'/twig'));
-
-        return $container;
-    }
-
-    protected function doLoadClassCache($name, $extension)
-    {
-        if (!$this->booted && is_file($this->getCacheDir().'/classes.map')) {
-            SaeClassCollectionLoader::load(include($this->getCacheDir().'/classes.map'), $this->getCacheDir(), $name, $this->debug, false, $extension);
-        }
-    }
+//    protected function buildContainer()
+//    {
+//        foreach (array('cache' => $this->getCacheDir()) as $name => $dir) {
+//            if (!is_dir($dir)) {
+//                if (false === @mkdir($dir, 0777, true) && !is_dir($dir)) {
+//                    throw new \RuntimeException(sprintf("Unable to create the %s directory (%s)\n", $name, $dir));
+//                }
+//            } elseif (!is_writable($dir)) {
+//                throw new \RuntimeException(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
+//            }
+//        }
+//
+//        $container = $this->getContainerBuilder();
+//        $container->addObjectResource($this);
+//        $this->prepareContainer($container);
+//
+//        if (null !== $cont = $this->registerContainerConfiguration($this->getContainerLoader($container))) {
+//            $container->merge($cont);
+//        }
+//
+//        $container->addCompilerPass(new AddClassesToCachePass($this));
+//        $container->addResource(new EnvParametersResource('SYMFONY__'));
+//
+////        $container->setParameter('twig.cache', new TwigSaeMCCache($this->getCacheDir().'/twig'));
+//
+//        return $container;
+//    }
+//
+//    protected function doLoadClassCache($name, $extension)
+//    {
+//        if (!$this->booted && is_file($this->getCacheDir().'/classes.map')) {
+//            SaeClassCollectionLoader::load(include($this->getCacheDir().'/classes.map'), $this->getCacheDir(), $name, $this->debug, false, $extension);
+//        }
+//    }
 }
 
 class TwigSaeMCCache implements Twig_CacheInterface {
