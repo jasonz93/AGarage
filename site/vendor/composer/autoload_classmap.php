@@ -18,6 +18,8 @@ return array(
     'NumberFormatter' => $vendorDir . '/symfony/symfony/src/Symfony/Component/Intl/Resources/stubs/NumberFormatter.php',
     'ParseError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
     'SaeAppKernel' => $baseDir . '/app/SaeAppKernel.php',
+    'SaeClassCollectionLoader' => $baseDir . '/app/SaeAppKernel.php',
     'SqlFormatter' => $vendorDir . '/jdorn/sql-formatter/lib/SqlFormatter.php',
+    'TwigSaeMCCache' => $baseDir . '/app/SaeAppKernel.php',
     'TypeError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
 );
