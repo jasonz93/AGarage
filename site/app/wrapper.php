@@ -359,10 +359,16 @@ class MySaeKVWrapper // implements WrapperInterface
     }
 
     public function stream_flush() {
-        return true;
+        if (self::DEBUG) {
+            sae_debug('Flushing kvdb stream.');
+        }
+        return false;
     }
 
     public function stream_lock($operation) {
+        if (self::DEBUG) {
+            sae_debug('Trying to lock kvdb stream.');
+        }
         return false;
     }
 
