@@ -11,9 +11,9 @@ framework:
         handler_id:  session.handler.native_file
         save_path:   "saemc:///var/sessions/%kernel.environment%"
 
-web_profiler:
-    toolbar: true
-    intercept_redirects: false
+#web_profiler:
+#    toolbar: true
+#    intercept_redirects: false
 
 monolog:
     handlers:
