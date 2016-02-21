@@ -17,7 +17,8 @@ use Storage;
 class SaeKVStorageServiceProvider extends ServiceProvider
 {
     public function boot() {
-        Storage::extend('saekv', function ($app, $config) {
+        sae_debug('Booting SAE KV Storage Provider...');
+        Storage::extend('files', function ($app, $config) {
             return new Filesystem(new SaeKVStorageAdapter());
         });
     }
