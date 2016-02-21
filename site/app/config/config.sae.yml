@@ -1,5 +1,6 @@
 imports:
-    - { resource: config.yml }
+  - { resource: config.yml }
+    { resource: service.sae.yml }
 
 framework:
     session:
@@ -17,6 +18,9 @@ doctrine:
         result_cache_driver:
             type: service
             id: doctrine.cache.memcache
+
+annotations:
+    cache: doctrine.cache.memcache
 
 monolog:
     handlers:
