@@ -14,7 +14,6 @@ use Illuminate\Support\ServiceProvider;
 class SiteConfigProvider extends ServiceProvider
 {
     public function boot() {
-        Log::error('Site Config provider is booting...');
         view()->share('site_name', env('SITE_NAME'));
     }
 
