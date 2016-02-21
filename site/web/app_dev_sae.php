@@ -22,6 +22,7 @@ use Symfony\Component\Debug\Debug;
  * @var Composer\Autoload\ClassLoader $loader
  */
 
+sae_xhprof_start();
 
 $loader = require __DIR__.'/../app/autoload.php';
 Debug::enable();
@@ -32,3 +33,5 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+
+sae_xhprof_end();
