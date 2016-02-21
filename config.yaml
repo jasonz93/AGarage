@@ -4,6 +4,8 @@ version: 1
 handle:
 
 #URL重写
-- rewrite: if(%{REQUEST_URI} == "/") goto "/zh/"
-- rewrite: if(!-f && !-d && %{REQUEST_URI} ~ "^(.*)(\.css|\.js|\.map|\.eot|\.svg|\.ttf|\.woff|\.woff2)$") goto "/site/web/%1%2"
-- rewrite: if(!-f && !-d && %{REQUEST_URI} ~ "^(.*)$") goto "/site/web/app.php/%1"
+#- rewrite: if(%{REQUEST_URI} == "/") goto "/zh/"
+#- rewrite: if(!-f && !-d && %{REQUEST_URI} ~ "^(.*)(\.css|\.js|\.map|\.eot|\.svg|\.ttf|\.woff|\.woff2)$") goto "/site/web/%1%2"
+#- rewrite: if(!-f && !-d && %{REQUEST_URI} ~ "^(.*)$") goto "/site/web/app.php/%1"
+- rewrite: if(!-f && !-d && %{REQUEST_URI} ~ "^(.*)(\.css|\.js|\.map|\.eot|\.svg|\.ttf|\.woff|\.woff2)$") goto "/laravel/public/%1%2"
+- rewrite: if(!-f && !-d && %{REQUEST_URI} ~ "^(.*)$") goto "/laravel/public/index.php/%1"
