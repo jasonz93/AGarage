@@ -16,6 +16,7 @@ class MySaeKVWrapper // implements WrapperInterface
     private $dir_mode = 16895 ; //040000 + 0222;
     private $file_mode = 33279 ; //0100000 + 0777;
     private $kvkey;
+    private $stat = array();
 
 
     public function __construct() { }
@@ -249,10 +250,10 @@ class MySaeKVWrapper // implements WrapperInterface
 
     public function rename($path_from , $path_to)
     {
-        $path_to = rtrim(trim(substr(trim($path_to), 8)), '/');
+        $path_to = rtrim(trim(substr(trim($path_to), 10)), '/');
         if (strpos($path_from, 'mysaekv://') === 0) {
             sae_debug('Renaming inside kvdb.');
-            $path_from = rtrim(trim(substr(trim($path_from), 8)), '/');
+            $path_from = rtrim(trim(substr(trim($path_from), 10)), '/');
             sae_debug("Rename from $path_from to $path_to");
 
             if ( $this->open( $path_from ) === true ) {
