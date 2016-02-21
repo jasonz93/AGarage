@@ -47,7 +47,6 @@ twig:
 assetic:
     debug:            "%kernel.debug%"
     use_controller:   "%kernel.debug%"
-    cache: false
     filters:
         cssrewrite: ~
     assets:
