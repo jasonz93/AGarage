@@ -1,11 +1,7 @@
 imports:
-    - { resource: config.yml }
+    - { resource: config.sae.yml }
 
 framework:
-    session:
-        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-        handler_id:  session.handler.native_file
-        save_path:   "saekv:///var/sessions/%kernel.environment%"
 #    validation:
 #        cache: validator.mapping.cache.doctrine.apc
 #    serializer:
@@ -16,16 +12,3 @@ framework:
 #        metadata_cache_driver: apc
 #        result_cache_driver: apc
 #        query_cache_driver: apc
-
-monolog:
-    handlers:
-#        main:
-#            type:         fingers_crossed
-#            action_level: error
-#            handler:      nested
-#        nested:
-#            type:  stream
-#            path:  "%kernel.logs_dir%/%kernel.environment%.log"
-#            level: debug
-        console:
-            type:  console

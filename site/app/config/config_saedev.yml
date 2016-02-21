@@ -1,50 +1,16 @@
 imports:
-    - { resource: config.yml }
+    - { resource: config.sae.yml }
 
 framework:
     router:
         resource: "%kernel.root_dir%/config/routing_dev.yml"
         strict_requirements: true
     profiler: { only_exceptions: false }
-    session:
-            # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-            handler_id:  session.handler.memcache
-
-doctrine:
-    orm:
-        metadata_cache_driver:
-            type: service
-            id: doctrine.cache.memcache
-        query_cache_driver:
-            type: service
-            id: doctrine.cache.memcache
-        result_cache_driver:
-            type: service
-            id: doctrine.cache.memcache
 
 web_profiler:
     toolbar: true
     intercept_redirects: false
 
-monolog:
-    handlers:
-        main:
-            type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
-            channels: [!event]
-#        console:
-#            type:   console
-#            bubble: false
-#            channels: [!event, !doctrine]
-        # uncomment to get logging in your browser
-        # you may have to allow bigger header sizes in your Web server configuration
-        #firephp:
-        #    type:   firephp
-        #    level:  info
-        #chromephp:
-        #    type:   chromephp
-        #    level:  info
 
 #swiftmailer:
 #    delivery_address: me@example.com

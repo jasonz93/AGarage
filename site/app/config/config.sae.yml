@@ -1,0 +1,27 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.memcache
+
+doctrine:
+    orm:
+        metadata_cache_driver:
+            type: service
+            id: doctrine.cache.memcache
+        query_cache_driver:
+            type: service
+            id: doctrine.cache.memcache
+        result_cache_driver:
+            type: service
+            id: doctrine.cache.memcache
+
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "mysaekv://var/log/%kernel.environment%.log"
+            level: debug
+            channels: [!event]
