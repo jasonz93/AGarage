@@ -19,7 +19,7 @@ class SaeKernel extends Kernel
     protected $bootstrappers = [
         'Illuminate\Foundation\Bootstrap\DetectEnvironment',
         'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-        'Illuminate\Foundation\Bootstrap\ConfigureLogging',
+        'AGarage\Extensions\SaeConfigureLogging',
         'Illuminate\Foundation\Bootstrap\HandleExceptions',
         'Illuminate\Foundation\Bootstrap\RegisterFacades',
         'Illuminate\Foundation\Bootstrap\RegisterProviders',
