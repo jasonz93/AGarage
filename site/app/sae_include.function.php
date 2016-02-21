@@ -1048,7 +1048,9 @@ class SaeKVWrapper // implements WrapperInterface
     public function __construct() { }
 
     private function kv() {
-        if ( !isset( $this->kv ) ) $this->kv = new SaeKV();
+        if ( !isset( $this->kv ) ) {
+            $this->kv = new SaeKV();
+        }
         $this->kv->init();
         return $this->kv;
     }
