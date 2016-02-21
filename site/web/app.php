@@ -2,6 +2,8 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
+sae_xhprof_start();
+
 /**
  * @var Composer\Autoload\ClassLoader
  */
@@ -28,3 +30,5 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+
+sae_xhprof_end();
