@@ -23,7 +23,6 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        cache: false
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
@@ -42,23 +41,6 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
       site_name:      "%site_name%"
-    cache: false
-
-assetic:
-    debug:            "%kernel.debug%"
-    use_controller:   false
-    filters:
-        cssrewrite: ~
-    assets:
-        js_bootstrap:
-            inputs:
-                - '@AGarageSiteBundle/Resources/js/bootstrap.js'
-        js_jquery:
-            inputs:
-                - '@AGarageSiteBundle/Resources/js/jquery.js'
-        css_bootstrap:
-            inputs:
-                - '@AGarageSiteBundle/Resources/css/bootstrap.css'
 
 # Doctrine Configuration
 doctrine:
