@@ -5,4 +5,5 @@ handle:
 
 #URL重写
 - rewrite: if(!-f && !-d && %{REQUEST_URI} ~ "^(.*)\.css$") goto "/site/web/%1.css"
+- rewrite: if(!-f && !-d && %{REQUEST_URI} ~ "^(.*)\.js$") goto "/site/web/%1.js"
 - rewrite: if(!-f && !-d && %{REQUEST_URI} ~* "(.*)") goto "/site/web/app_dev_sae.php/%1"
