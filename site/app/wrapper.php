@@ -34,7 +34,11 @@ class MySaeKVWrapper // implements WrapperInterface
             return true;
         } else {
             if (self::DEBUG) {
-                sae_debug('Failed when reading kvdb.');
+                if (!$this->unpack_stat(substr($value, 0, 20))) {
+                    sae_debug('Failed when unpacking stat.');
+                } else {
+                    sae_debug('Failed when reading kvdb.');
+                }
             }
             return false;
         }
