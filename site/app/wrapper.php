@@ -17,14 +17,15 @@ class MySaeKVWrapper // implements WrapperInterface
     private $file_mode = 33279 ; //0100000 + 0777;
     private $kvkey;
     private $stat = array();
+    private $kv = null;
 
 
     public function __construct() { }
 
     private function kv() {
-        if ( !isset( $this->kv ) ) {
+        if ( $this->kv == null ) {
             $this->kv = new SaeKV();
-            $this->kv = $this->kv->init();
+            $this->kv->init();
         }
 
         return $this->kv;
