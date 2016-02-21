@@ -29,12 +29,13 @@ class MySaeKVWrapper // implements WrapperInterface
 
     private function open( $key ) {
         $value = $this->kv()->get( $key );
-        if ( $value !== false && $this->unpack_stat(substr($value, 0, 20)) === true ) {
+        $unpack = $this->unpack_stat(substr($value, 0, 20));
+        if ( $value !== false && $unpack === true ) {
             $this->kvcontent = substr($value, 20);
             return true;
         } else {
             if (self::DEBUG) {
-                if (!$this->unpack_stat(substr($value, 0, 20))) {
+                if (!$unpack) {
                     sae_debug('Failed when unpacking stat.');
                 } else {
                     sae_debug('Failed when reading kvdb.(Key does not exist)');
