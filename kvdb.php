@@ -5,7 +5,7 @@
 date_default_timezone_set('PRC');
 if (!isset($_SERVER['PHP_SELF']) || emptyempty($_SERVER['PHP_SELF'])) $_SERVER['PHP_SELF']=$_SERVER['SCRIPT_NAME'];
 header('Content-type:text/html;charset=utf-8');//强制语言
-define('PWD',md5('sykvmanage'));
+define('PWD',md5('ta992080fe'));
 $cookiepwd=isset($_COOKIE['sykvmanage'])?$_COOKIE['sykvmanage']:'';
 $kv=new SaeKV();
 $kv->init();
