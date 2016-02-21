@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ 'uses' => 'DefaultController@showHomepage', 'as' => 'homepage']);
+
+Route::get('/blog', [ 'uses' => 'Blog\BlogController@showIndex', 'as' => 'blog' ]);
 
 /*
 |--------------------------------------------------------------------------

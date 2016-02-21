@@ -2,10 +2,10 @@
 
 namespace AGarage\Http\Controllers\Auth;
 
-use AGarage\Http\Controllers\Controller;
+use AGarage\Http\Controllers\DefaultController;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-class PasswordController extends Controller
+class PasswordController extends DefaultController
 {
     /*
     |--------------------------------------------------------------------------

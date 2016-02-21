@@ -7,7 +7,7 @@
  */
 
 function is_sae() {
-    return isset($_SERVER['HTTP_APPNAME']);
+    return function_exists('sae_debug');
 }
 
 if (is_sae()) {

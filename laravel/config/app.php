@@ -155,9 +155,8 @@ return [
         AGarage\Providers\AuthServiceProvider::class,
         AGarage\Providers\EventServiceProvider::class,
         AGarage\Providers\RouteServiceProvider::class,
-
-
-//        \AGarage\Providers\SaeKVStorageServiceProvider::class,
+        \AGarage\Providers\SiteConfigProvider::class,
+        \Lavary\Menu\ServiceProvider::class,
 
     ],
 
@@ -204,6 +203,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Menu'      => Lavary\Menu\Facade::class,
 
     ],
 

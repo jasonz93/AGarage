@@ -29,6 +29,7 @@ return [
     */
 
 //    'compiled' => realpath(storage_path('framework/views')),
-    'compiled' => 'saekv:///laravel/storage/framework/views',
+    'compiled' => is_sae() ? 'saekv:///laravel/storage/framework/views' :
+                realpath(storage_path('framework/views')),
 
 ];
