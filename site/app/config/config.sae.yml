@@ -1,6 +1,6 @@
 imports:
   - { resource: config.yml }
-    { resource: service.sae.yml }
+  - { resource: service.sae.yml }
 
 framework:
     session:
