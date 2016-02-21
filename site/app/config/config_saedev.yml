@@ -9,7 +9,7 @@ framework:
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
-        save_path:   "saemc:///var/sessions/%kernel.environment%"
+        save_path:   "mysaekv:///var/sessions/%kernel.environment%"
 
 web_profiler:
     toolbar: true
