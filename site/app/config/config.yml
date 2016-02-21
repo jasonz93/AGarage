@@ -44,21 +44,21 @@ twig:
       site_name:      "%site_name%"
     cache: false
 
-#assetic:
-#    debug:            "%kernel.debug%"
-#    use_controller:   "%kernel.debug%"
-#    filters:
-#        cssrewrite: ~
-#    assets:
-#        js_bootstrap:
-#            inputs:
-#                - '@AGarageSiteBundle/Resources/js/bootstrap.js'
-#        js_jquery:
-#            inputs:
-#                - '@AGarageSiteBundle/Resources/js/jquery.js'
-#        css_bootstrap:
-#            inputs:
-#                - '@AGarageSiteBundle/Resources/css/bootstrap.css'
+assetic:
+    debug:            "%kernel.debug%"
+    use_controller:   "%kernel.debug%"
+    filters:
+        cssrewrite: ~
+    assets:
+        js_bootstrap:
+            inputs:
+                - '@AGarageSiteBundle/Resources/js/bootstrap.js'
+        js_jquery:
+            inputs:
+                - '@AGarageSiteBundle/Resources/js/jquery.js'
+        css_bootstrap:
+            inputs:
+                - '@AGarageSiteBundle/Resources/css/bootstrap.css'
 
 # Doctrine Configuration
 doctrine:

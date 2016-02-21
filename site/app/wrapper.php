@@ -263,11 +263,6 @@ class MySaeMemcacheWrapper // implements WrapperInterface
         }
     }
 
-
-
-
-
-
     // ============================================
 
     private function statinfo_init( $is_file = true )
