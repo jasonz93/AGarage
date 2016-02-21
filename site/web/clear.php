@@ -20,6 +20,6 @@ if ($debug) {
     Debug::enable();
 }
 
-$kernel = new AppKernel($env, $debug);
+$kernel = new SaeAppKernel($env, $debug);
 $application = new Application($kernel);
 $application->run($input);
