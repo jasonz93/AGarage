@@ -26,8 +26,8 @@ class MySaeMemcacheWrapper // implements WrapperInterface
 
     private function open( $key ) {
         $value = $this->mc()->get( $key );
+        $this->kvkey = $key;
         if ( $value !== false && $this->unpack_stat(substr($value, 0, 20)) === true ) {
-            $this->kvkey = $key;
             $this->kvcontent = substr($value, 20);
             return true;
         } else {
