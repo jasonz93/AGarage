@@ -10,6 +10,18 @@ framework:
             # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
             handler_id:  session.handler.memcache
 
+doctrine:
+    orm:
+        metadata_cache_driver:
+            type: service
+            id: doctrine.cache.memcache
+        query_cache_driver:
+            type: service
+            id: doctrine.cache.memcache
+        result_cache_driver:
+            type: service
+            id: doctrine.cache.memcache
+
 web_profiler:
     toolbar: true
     intercept_redirects: false

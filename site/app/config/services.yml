@@ -7,10 +7,14 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-    session.memcache:
+    memcache:
         class: Memcache
         calls:
             - [connect]
     session.handler.memcache:
         class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MemcacheSessionHandler
-        arguments: ['@session.memcache', '%session_options%']
+        arguments: ['@memcache', '%session_options%']
+    doctrine.cache.memcache:
+        class: Doctrine\Common\Cache\MemcacheCache
+        calls:
+            - [setMemcache, ['@memcache']]
