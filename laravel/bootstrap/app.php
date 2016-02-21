@@ -28,10 +28,16 @@ $app = new Illuminate\Foundation\Application(
 |
 */
 
-$app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    AGarage\Http\Kernel::class
-);
+if (is_sae()) {
+    $app->singleton(
+        Illuminate\Contracts\Http\Kernel::class,
+        AGarage\Http\SaeKernel::class);
+} else {
+    $app->singleton(
+        Illuminate\Contracts\Http\Kernel::class,
+        AGarage\Http\Kernel::class
+    );
+}
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,

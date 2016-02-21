@@ -6,30 +6,6 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
-    /**
-     * The bootstrap classes for the application.
-     *
-     * @var array
-     */
-    protected $bootstrappers = [
-        'Illuminate\Foundation\Bootstrap\DetectEnvironment',
-        'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-//        'Illuminate\Foundation\Bootstrap\ConfigureLogging',
-        'Illuminate\Foundation\Bootstrap\HandleExceptions',
-        'Illuminate\Foundation\Bootstrap\RegisterFacades',
-        'Illuminate\Foundation\Bootstrap\RegisterProviders',
-        'Illuminate\Foundation\Bootstrap\BootProviders',
-    ];
-
-    public function __construct(Application $app, Router $router)
-    {
-        if (is_sae()) {
-            $this->bootstrappers[] = 'AGarage\Extensions\SaeConfigureLogging';
-        } else {
-            $this->bootstrappers[] = 'Illuminate\Foundation\Bootstrap\ConfigureLogging';
-        }
-        parent::__construct($app, $router);
-    }
 
     /**
      * The application's global HTTP middleware stack.
