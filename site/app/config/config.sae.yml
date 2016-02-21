@@ -25,6 +25,6 @@ monolog:
     handlers:
         main:
             type: stream
-            path: "mysaekv://var/logs/%kernel.environment%.log"
+            path: "saemc://var/logs/%kernel.environment%.log"
             level: debug
             channels: [!event]
