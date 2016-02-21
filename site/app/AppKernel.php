@@ -17,10 +17,10 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new AGarage\Site\AGarageSiteBundle(),
-            new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test', 'saedev'], true)) {
+            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
