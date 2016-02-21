@@ -7,6 +7,9 @@ parameters:
         cache_dir: 'saekv://var/cache/%kernel.environment%'
         logs_dir: 'saekv://var/logs/$kernel.environment%'
 
+twig:
+    cache: '%kernel.cache_dir%/twig'
+
 framework:
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
