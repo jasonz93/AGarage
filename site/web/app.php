@@ -20,7 +20,7 @@ $loader->unregister();
 $apcLoader->register(true);
 */
 
-$kernel = new SaeAppKernel('prod', false);
+$kernel = new SaeAppKernel('prod', true);
 $kernel->loadClassCache();
 //$kernel = new AppCache($kernel);
 
