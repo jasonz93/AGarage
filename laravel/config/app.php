@@ -156,6 +156,9 @@ return [
         AGarage\Providers\EventServiceProvider::class,
         AGarage\Providers\RouteServiceProvider::class,
 
+
+        \AGarage\Providers\SaeKVStorageServiceProvider::class,
+
     ],
 
     /*
