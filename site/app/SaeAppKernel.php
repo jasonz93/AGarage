@@ -15,15 +15,15 @@ require_once 'wrapper.php';
 
 class SaeAppKernel extends AppKernel
 {
-//    public function getCacheDir()
-//    {
-//        return 'saemc:///var/cache/'.$this->getEnvironment();
-//    }
-//
-//    public function getLogDir()
-//    {
-//        return 'saemc:///var/logs/'.$this->getEnvironment();
-//    }
+    public function getCacheDir()
+    {
+        return 'saekv:///var/cache/'.$this->getEnvironment();
+    }
+
+    public function getLogDir()
+    {
+        return 'saekv:///var/logs/'.$this->getEnvironment();
+    }
 
     /**
      * Builds the service container.
