@@ -7,3 +7,10 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    session.memcache:
+        class: Memcache
+        calls:
+            - [connect]
+    session.handler.memcache:
+        class: \Symfony\Component\HttpFoundation\Session\Storage\Handler\MemcacheSessionHandler
+        arguments: ['@session.memcache', ['sess', 86400]]
