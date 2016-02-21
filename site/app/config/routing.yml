@@ -2,6 +2,7 @@ app:
     resource: "@AGarageSiteBundle/Controller/"
     type:     annotation
 
+
 #_assetic:
 #    resource: .
 #    type:     assetic

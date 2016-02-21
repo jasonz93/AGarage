@@ -1,6 +1,7 @@
 imports:
   - { resource: config.yml }
   - { resource: service.sae.yml }
+  - { resource: parameters.sae.xml }
 
 parameters:
     kernel:
@@ -18,6 +19,13 @@ framework:
         cache: doctrine.cache.memcache
 
 doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%sae_database_host%"
+        port:     "%sae_database_port%"
+        name:     "%sae_database_name%"
+        user:     "%sae_database_user%"
+        password: "%sae_database_password%"
     orm:
         metadata_cache_driver:
             type: service

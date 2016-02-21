@@ -1,10 +1,10 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: 127.0.0.1
-    database_port: null
-    database_name: symfony
+    database_host: 172.16.97.116
+    database_port: 3306
+    database_name: AGarage
     database_user: root
-    database_password: null
+    database_password: ta992080fe
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null

@@ -13,7 +13,7 @@
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                {{ knp_menu_render('AGarageSiteBundle:MainNavbar:leftNavbar') }}
+                {{ knp_menu_render('AGarageSiteBundle:MainNavbar:leftNavbar', {'currentClass': 'active'}) }}
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Link</a></li>
                     <li class="dropdown">
@@ -30,4 +30,12 @@
             </div>
         </div>
     </nav>
+{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        body {
+            padding-top: 70px;
+        }
+    </style>
 {% endblock %}

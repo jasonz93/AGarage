@@ -360,7 +360,11 @@ public function __construct(<params>)
      */
     public function writeEntityClass(ClassMetadataInfo $metadata, $outputDirectory)
     {
-        $path = $outputDirectory . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $metadata->name) . $this->extension;
+        $names = explode("\\", $metadata->name);
+        $name = array_pop($names);
+        $path = "$outputDirectory/$name$this->extension";
+
+//        $path = $outputDirectory . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $metadata->name) . $this->extension;
         $dir = dirname($path);
 
         if ( ! is_dir($dir)) {

@@ -12,7 +12,6 @@ namespace AGarage\Site\Menu;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class MainNavbar implements ContainerAwareInterface
 {
@@ -21,14 +20,16 @@ class MainNavbar implements ContainerAwareInterface
     public function leftNavbar(FactoryInterface $factory, array $options = array()) {
         $translator = $this->container->get('translator');
 
-        $menu = $factory->createItem('root');
-        $options = array_merge($options, [
-            'currentClass' => 'active'
-        ]);
+        $menu = $factory->createItem('root', $options);
+
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
         $menu->addChild('homepage', [
             'route' => 'homepage',
             'label' => $translator->trans('main_navbar.homepage'),
+        ]);
+        $menu->addChild('blog', [
+            'route' => 'blog',
+            'label' => $translator->trans('main_navbar.blog'),
         ]);
 
         return $menu;
