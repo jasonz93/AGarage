@@ -42,10 +42,12 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
       site_name:      "%site_name%"
+    cache: false
 
 assetic:
     debug:            "%kernel.debug%"
     use_controller:   "%kernel.debug%"
+    cache: false
     filters:
         cssrewrite: ~
     assets:
