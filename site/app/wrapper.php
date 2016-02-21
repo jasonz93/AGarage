@@ -6,6 +6,17 @@
  * Time: 上午4:40
  */
 
+if ( in_array( "saemc", stream_get_wrappers() ) ) {
+    stream_wrapper_unregister("saemc");
+}
+stream_wrapper_register( "saemc", "MySaeMemcacheWrapper" );
+
+class MySaeMemcacheWrapper extends SaeMemcacheWrapper {
+    public function stream_metadata($path, $option, $value) {
+        return false;
+    }
+}
+
 if ( ! in_array("mysaekv", stream_get_wrappers()) )
     stream_wrapper_register("mysaekv", "MySaeKVWrapper");
 

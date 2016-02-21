@@ -9,6 +9,10 @@ framework:
     annotations:
         cache: doctrine.cache.memcache
 
+kernel:
+    cache_dir: 'saemc://var/cache/%kernel.environment%'
+    logs_dir: 'saemc://var/logs/$kernel.environment%'
+
 doctrine:
     orm:
         metadata_cache_driver:
