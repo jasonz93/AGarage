@@ -4,8 +4,8 @@ imports:
 
 parameters:
     kernel:
-        cache_dir: 'saemc://var/cache/%kernel.environment%'
-        logs_dir: 'saemc://var/logs/$kernel.environment%'
+        cache_dir: 'saekv://var/cache/%kernel.environment%'
+        logs_dir: 'saekv://var/logs/$kernel.environment%'
 
 framework:
     session:
