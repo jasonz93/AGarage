@@ -29,6 +29,7 @@ $app = new Illuminate\Foundation\Application(
 */
 
 if (is_sae()) {
+    sae_debug('SAE Environment detected.');
     $app->singleton(
         Illuminate\Contracts\Http\Kernel::class,
         AGarage\Http\SaeKernel::class);
