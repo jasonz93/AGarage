@@ -12,7 +12,7 @@ use Symfony\Component\Debug\Debug;
 
 $loader = require __DIR__.'/../app/autoload.php';
 
-$input = new ArgvInput(['console', 'assetic:dump']);
+$input = new ArgvInput(['console', 'assetic:dump', '--env=saedev']);
 $env = $input->getParameterOption(['--env', '-e'], getenv('SYMFONY_ENV') ?: 'dev');
 $debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(['--no-debug', '']) && $env !== 'prod';
 
