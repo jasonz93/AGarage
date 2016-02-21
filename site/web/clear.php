@@ -22,4 +22,8 @@ if ($debug) {
 
 $kernel = new SaeAppKernel($env, $debug);
 $application = new Application($kernel);
-$application->run($input);
+
+$os = fopen('saekv://var/logs/console.log', 'a');
+$output = new \Symfony\Component\Console\Output\StreamOutput($os);
+
+$application->run($input, $output);
