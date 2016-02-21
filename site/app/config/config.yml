@@ -34,7 +34,8 @@ framework:
         save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
     fragments:       ~
     http_method_override: true
-    assets: ~
+    assets:
+        favicon: favicon.ico
         js_jquery: /site/web/js/jquery.min.js
         js_bootstrap: /site/web/js/bootstrap.min.js
         css_bootstrap: /site/web/css/bootstrap.min.css
