@@ -13,4 +13,4 @@ services:
             - [connect]
     session.handler.memcache:
         class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MemcacheSessionHandler
-        arguments: ['@session.memcache', ['sess', 86400]]
+        arguments: ['@session.memcache', [prefix='sess', expiretime=86400]]
