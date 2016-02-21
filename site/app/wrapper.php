@@ -55,11 +55,20 @@ class MySaeKVWrapper // implements WrapperInterface
     private function unpack_stat( $str ) {
         $arr = unpack("L5", $str);
 
+        $valid = true;
+
         // check if valid
-        if ( $arr[1] < 10000 ) return false;
-        if ( !in_array($arr[2], array( $this->dir_mode, $this->file_mode ) ) ) return false;
-        if ( $arr[4] > time() ) return false;
-        if ( $arr[5] > time() ) return false;
+        if ( $arr[1] < 10000 ) $valid = false;
+        if ( !in_array($arr[2], array( $this->dir_mode, $this->file_mode ) ) ) $valid = false;
+        if ( $arr[4] > time() ) $valid = false;
+        if ( $arr[5] > time() ) $valid = false;
+
+        if (!$valid) {
+            if (self::DEBUG) {
+                sae_debug('Stat check failed. ' . var_export($arr, true));
+            }
+            return false;
+        }
 
         $this->stat['dev'] = $this->stat[0] = 0x8003;
         $this->stat['ino'] = $this->stat[1] = $arr[1];
