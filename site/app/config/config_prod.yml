@@ -2,6 +2,7 @@ imports:
     - { resource: config.sae.yml }
 
 framework:
+    profiler: { only_exceptions: false }
 #    validation:
 #        cache: validator.mapping.cache.doctrine.apc
 #    serializer:
