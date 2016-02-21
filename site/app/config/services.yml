@@ -12,5 +12,5 @@ services:
         calls:
             - [connect]
     session.handler.memcache:
-        class: \Symfony\Component\HttpFoundation\Session\Storage\Handler\MemcacheSessionHandler
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MemcacheSessionHandler
         arguments: ['@session.memcache', ['sess', 86400]]
