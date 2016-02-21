@@ -2,16 +2,17 @@ imports:
   - { resource: config.yml }
   - { resource: service.sae.yml }
 
+parameters:
+    kernel:
+        cache_dir: 'saemc://var/cache/%kernel.environment%'
+        logs_dir: 'saemc://var/logs/$kernel.environment%'
+
 framework:
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.memcache
     annotations:
         cache: doctrine.cache.memcache
-
-kernel:
-    cache_dir: 'saemc://var/cache/%kernel.environment%'
-    logs_dir: 'saemc://var/logs/$kernel.environment%'
 
 doctrine:
     orm:
