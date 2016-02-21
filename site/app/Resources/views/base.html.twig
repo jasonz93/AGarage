@@ -5,7 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        {% stylesheets '@css_bootstrap' filter='cssrewrite' %}
+        {% stylesheets '@css_bootstrap' %}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
         {% endstylesheets %}
     </head>
