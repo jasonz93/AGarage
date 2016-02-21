@@ -17,4 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+    session_options:
+        prefix: sess
+        expiretime: 86400
     site_name: 一间车库
