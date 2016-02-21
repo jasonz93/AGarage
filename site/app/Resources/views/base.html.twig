@@ -5,9 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        {% stylesheets '@css_bootstrap' %}
-        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-        {% endstylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('@AGarageSiteBundle/Resources/css/bootstrap.css') }}" />
     </head>
     <body>
         {% block navbar %}{% endblock %}

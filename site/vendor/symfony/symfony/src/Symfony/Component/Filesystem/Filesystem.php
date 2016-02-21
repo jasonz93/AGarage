@@ -532,7 +532,6 @@ class Filesystem
 
         // Ignore for filesystems that do not support umask
         @chmod($tmpFile, 0666);
-        sae_debug($tmpFile);
         $this->rename($tmpFile, $filename, true);
     }
 
