@@ -6,6 +6,8 @@ framework:
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.memcache
+    annotations:
+        cache: doctrine.cache.memcache
 
 doctrine:
     orm:
@@ -18,9 +20,6 @@ doctrine:
         result_cache_driver:
             type: service
             id: doctrine.cache.memcache
-
-annotations:
-    cache: doctrine.cache.memcache
 
 monolog:
     handlers:
