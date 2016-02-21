@@ -7,9 +7,8 @@ framework:
         strict_requirements: true
     profiler: { only_exceptions: false }
     session:
-        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-        handler_id:  session.handler.native_file
-        save_path:   "mysaekv:///var/sessions/%kernel.environment%"
+            # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+            handler_id:  session.handler.memcache
 
 web_profiler:
     toolbar: true
