@@ -10,4 +10,7 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: f7474c19820f9bbbb847d823aa5006bca275fe99
+    session_options:
+        prefix: sess
+        expiretime: 86400
     site_name: 一间车库
