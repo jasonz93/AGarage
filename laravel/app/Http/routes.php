@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', [ 'uses' => 'DefaultController@showHomepage', 'as' => 'homepage']);
-
-Route::get('/blog', [ 'uses' => 'Blog\BlogController@showIndex', 'as' => 'blog' ]);
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,5 +23,16 @@ Route::get('/blog', [ 'uses' => 'Blog\BlogController@showIndex', 'as' => 'blog' 
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', [ 'uses' => 'DefaultController@showHomepage', 'as' => 'homepage']);
+
+    Route::group(['namespace' => 'Blog'], function () {
+        Route::get('/blog', [
+            'uses' => 'BlogController@showIndex',
+            'as' => 'blog'
+        ]);
+        Route::get('/blog/topic/{topic?}', [
+            'uses' => 'BlogController@showArticleList',
+            'as' => 'blog.article.list'
+        ]);
+    });
 });

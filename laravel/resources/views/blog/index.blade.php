@@ -1,5 +1,5 @@
-@extends('layouts.with_navbar')
+@extends('blog.base')
 
 @section('title')
-    Blog
+    {{ trans('blog.blog') }}
 @endsection

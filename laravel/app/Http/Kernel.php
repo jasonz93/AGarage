@@ -50,5 +50,6 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \AGarage\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'blog.topic' => \AGarage\Http\Middleware\BlogTopicInjector::class,
     ];
 }

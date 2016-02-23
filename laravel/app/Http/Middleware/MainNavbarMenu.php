@@ -16,10 +16,10 @@ class MainNavbarMenu
     public function handle($request, Closure $next) {
 
         Menu::make('MainNavbar', function ($menu) {
-            $menu->add('Homepage', [
+            $menu->add(trans('homepage.homepage'), [
                 'route' => 'homepage'
             ]);
-            $menu->add('Blog', [
+            $menu->add(trans('blog.blog'), [
                 'route' => 'blog'
             ]);
         });

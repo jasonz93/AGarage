@@ -32,6 +32,10 @@
 </nav>
 @endsection
 
+<div class="container">
+    @yield('content')
+</div>
+
 @section('stylesheets')
 <style type="text/css">
     body {
