@@ -128,7 +128,8 @@ $config = [
 ];
 
 if (is_sae()) {
-    $config['connections']['mysql']['host'] = SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT;
+    $config['connections']['mysql']['host'] = SAE_MYSQL_HOST_M;
+    $config['connections']['mysql']['port'] = SAE_MYSQL_PORT;
     $config['connections']['mysql']['database'] = SAE_MYSQL_DB;
     $config['connections']['mysql']['username'] = SAE_MYSQL_USER;
     $config['connections']['mysql']['password'] = SAE_MYSQL_PASS;
