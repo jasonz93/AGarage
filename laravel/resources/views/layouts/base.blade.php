@@ -12,7 +12,6 @@
 @yield('navbar')
 @yield('body')
 
-{{--<script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>--}}
 <script src="{{ asset('js/base.js') }}" type="text/javascript"></script>
 
 @yield('javascripts')

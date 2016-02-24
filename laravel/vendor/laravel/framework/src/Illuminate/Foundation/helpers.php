@@ -635,7 +635,11 @@ if (! function_exists('storage_path')) {
      */
     function storage_path($path = '')
     {
-        return app('path.storage').($path ? DIRECTORY_SEPARATOR.$path : $path);
+        if (is_sae()) {
+            return 'saekv:///var/laravel/storage';
+        } else {
+            return app('path.storage').($path ? DIRECTORY_SEPARATOR.$path : $path);
+        }
     }
 }
 

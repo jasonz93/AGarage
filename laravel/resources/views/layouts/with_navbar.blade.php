@@ -1,4 +1,5 @@
 @extends('layouts.base')
+
 @section('navbar')
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -32,9 +33,11 @@
 </nav>
 @endsection
 
+@section('body')
 <div class="container">
     @yield('content')
 </div>
+@endsection
 
 @section('stylesheets')
 <style type="text/css">

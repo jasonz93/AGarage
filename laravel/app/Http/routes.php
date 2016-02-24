@@ -35,4 +35,11 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'blog.article.list'
         ]);
     });
+
+    Route::group(['namespace' => 'Resume'], function () {
+        Route::get('/resume', [
+            'uses' => 'ResumeController@showIndex',
+            'as' => 'resume'
+        ]);
+    });
 });

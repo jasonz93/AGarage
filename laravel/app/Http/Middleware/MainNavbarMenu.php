@@ -22,6 +22,9 @@ class MainNavbarMenu
             $menu->add(trans('blog.blog'), [
                 'route' => 'blog'
             ]);
+            $menu->add(trans('resume.resume'), [
+                'route' => 'resume'
+            ]);
         });
 
         return $next($request);
