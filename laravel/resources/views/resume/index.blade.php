@@ -205,6 +205,22 @@
         <li>48小时内完成可演示原型的搭建与开发，包含硬件和Android客户端</li>
     </ul>
 
+    <div class="row">
+        <div class="col-sm-4">
+            <h5>建设个人网站</h5>
+        </div>
+        <div class="col-sm-6">
+            <h5>全部工作</h5>
+        </div>
+        <div class="col-sm-2">
+            2016.02-2016.03
+        </div>
+    </div>
+    <ul class="content">
+        <li>使用Laravel进行开发，将Laravel 5.2移植到SAE环境下运行，并实现本机/SAE环境自适应切换</li>
+        <li>做点好玩的东西</li>
+    </ul>
+
     <legend class="primary-color">其他经历</legend>
     <div class="row">
         <div class="col-sm-5">

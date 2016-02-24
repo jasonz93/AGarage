@@ -1,6 +1,7 @@
 @extends('blog.base')
 
 @section('middle_col')
+    <span>{{ trans('blog.article_list') }}</span>
     <div class="list-group">
         @foreach($articles as $article)
             <a href="#" class="list-group-item">

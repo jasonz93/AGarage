@@ -8,5 +8,6 @@
 return [
     'blog' => '博客',
     'topic_list' => '分类列表',
+    'article_list' => '文章列表',
     'all_topic' => '全部'
 ];
