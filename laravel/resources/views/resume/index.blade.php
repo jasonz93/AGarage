@@ -144,7 +144,7 @@
             <h5>独立开发后端、架构、独立开发Android、项目管理、团队领袖</h5>
         </div>
         <div class="col-sm-2">
-            2015.07-2016.04
+            2015.07至今
         </div>
     </div>
     <ul class="content">
@@ -207,13 +207,30 @@
 
     <div class="row">
         <div class="col-sm-4">
+            <h5>某初创公司存储产品软件外包</h5>
+        </div>
+        <div class="col-sm-6">
+            <h5>独立开发后端、Android核心代码、项目管理</h5>
+        </div>
+        <div class="col-sm-2">
+            <h5>2016.01至今</h5>
+        </div>
+    </div>
+    <ul class="content">
+        <li>使用PHP+Slim+Doctrine+MySQL开发后端REST API</li>
+        <li>部分组件可分布式部署，使用Zookeeper进行通讯</li>
+        <li>自己实现了一个基于Zookeeper的分布式锁和分布式队列</li>
+    </ul>
+
+    <div class="row">
+        <div class="col-sm-4">
             <h5>建设个人网站</h5>
         </div>
         <div class="col-sm-6">
             <h5>全部工作</h5>
         </div>
         <div class="col-sm-2">
-            2016.02-2016.03
+            2016.02至今
         </div>
     </div>
     <ul class="content">
