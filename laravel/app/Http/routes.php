@@ -34,6 +34,10 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'BlogController@showArticleList',
             'as' => 'blog.article.list'
         ]);
+        Route::get('/blog/article/{article}', [
+            'uses' => 'BlogController@showArticle',
+            'as' => 'blog.article'
+        ]);
     });
 
     Route::group(['namespace' => 'Resume'], function () {

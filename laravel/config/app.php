@@ -151,6 +151,8 @@ return [
         /*
          * Application Service Providers...
          */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        \AGarage\Providers\ParsedownProvider::class,
         AGarage\Providers\AppServiceProvider::class,
         AGarage\Providers\AuthServiceProvider::class,
         AGarage\Providers\EventServiceProvider::class,
@@ -204,6 +206,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Menu'      => Lavary\Menu\Facade::class,
+        'Markdown' => \AGarage\Facades\ParsedownFacade::class,
 
     ],
 

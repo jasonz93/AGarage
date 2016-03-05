@@ -37,7 +37,9 @@ class BlogController extends Controller
         ]);
     }
 
-    public function showArticle($article) {
-
+    public function showArticle(BlogArticle $article) {
+        return view('blog.article', [
+            'article' => $article
+        ]);
     }
 }
