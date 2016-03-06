@@ -11,6 +11,7 @@ namespace AGarage\Http\Controllers\Blog;
 
 use AGarage\BlogArticle;
 use AGarage\BlogTopic;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class BlogController extends Controller
@@ -27,13 +28,14 @@ class BlogController extends Controller
     }
 
     public function showArticleList(BlogTopic $topic) {
-        if ($topic) {
-            $articles = BlogArticle::all();
+        if ($topic->exists) {
+            $articles = $topic->articles()->get()->sortByDesc('created_at');
         } else {
-            $articles = $topic->articles()->get();
+            $articles = BlogArticle::all()->sortByDesc('created_at');
         }
         return view('blog.article_list', [
-            'articles' => $articles
+            'articles' => $articles,
+            'topic' => $topic->exists ? $topic : null
         ]);
     }
 
@@ -41,5 +43,31 @@ class BlogController extends Controller
         return view('blog.article', [
             'article' => $article
         ]);
+    }
+
+    public function showEditArticle(BlogArticle $article) {
+        return view('blog.article_edit', [
+            'article' => $article
+        ]);
+    }
+
+    public function saveArticle(Request $request, BlogArticle $article) {
+        if ($article->exists) {
+            $article->title = $request->input('title');
+            $article->content = $request->input('content');
+            $article->save();
+        } else {
+            $article = BlogArticle::create([
+                'title' => $request->input('title'),
+                'content' => $request->input('content')
+            ]);
+        }
+        return redirect()->route('blog.article', [
+            'article' => $article->id
+        ]);
+    }
+
+    public function ajaxShowArticle(BlogArticle $article) {
+
     }
 }

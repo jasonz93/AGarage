@@ -147,12 +147,14 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        \Illuminate\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         \AGarage\Providers\ParsedownProvider::class,
+        \YuanChao\Editor\EndaEditorServiceProvider::class,
         AGarage\Providers\AppServiceProvider::class,
         AGarage\Providers\AuthServiceProvider::class,
         AGarage\Providers\EventServiceProvider::class,
@@ -207,6 +209,9 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Menu'      => Lavary\Menu\Facade::class,
         'Markdown' => \AGarage\Facades\ParsedownFacade::class,
+        'EndaEditor' => \YuanChao\Editor\Facade\EndaEditorFacade::class,
+        'Form'      => \Illuminate\Html\FormFacade::class,
+        'HTML'      => \Illuminate\Html\HtmlFacade::class,
 
     ],
 

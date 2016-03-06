@@ -6,6 +6,7 @@
     @yield('stylesheets')
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/base.css') }}" />
+    @yield('css')
 </head>
 <body>
 

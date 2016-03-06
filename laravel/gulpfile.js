@@ -15,4 +15,5 @@ elixir(function(mix) {
     mix.sass('app.scss');
     mix.styles(['bootstrap.min.css'], 'public/css/base.css');
     mix.scripts(['jquery.min.js', 'bootstrap.min.js'], 'public/js/base.js');
+    mix.copy('resources/assets/markdown', 'public/markdown');
 });

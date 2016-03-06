@@ -34,9 +34,25 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'BlogController@showArticleList',
             'as' => 'blog.article.list'
         ]);
+        Route::get('/blog/article/new', [
+            'uses' => 'BlogController@showEditArticle',
+            'as' => 'blog.article.new'
+        ]);
         Route::get('/blog/article/{article}', [
             'uses' => 'BlogController@showArticle',
             'as' => 'blog.article'
+        ]);
+        Route::get('/blog/article/{article}/edit', [
+            'uses' => 'BlogController@showEditArticle',
+            'as' => 'blog.article.edit'
+        ]);
+        Route::post('/blog/article/{article?}', [
+            'uses' => 'BlogController@saveArticle',
+            'as' => 'blog.article.save'
+        ]);
+        Route::get('/blog/article/{article}/ajax', [
+            'uses' => 'BlogController@ajaxShowArticle',
+            'as' => 'blog.article.ajax'
         ]);
     });
 

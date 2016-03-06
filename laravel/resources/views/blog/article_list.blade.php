@@ -1,5 +1,13 @@
 @extends('blog.base')
 
+@section('title')
+    @if($topic == null)
+        {{ trans('blog.all_topic') }}
+    @else
+        {{ $topic->name }}
+    @endif
+@endsection
+
 @section('middle_col')
     <span>{{ trans('blog.article_list') }}</span>
     <div class="list-group">
