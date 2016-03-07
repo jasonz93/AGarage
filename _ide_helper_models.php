@@ -69,6 +69,14 @@ namespace AGarage{
 
 namespace AGarage{
 /**
+ * AGarage\AccessLog
+ *
+ */
+	class AccessLog extends \Eloquent {}
+}
+
+namespace AGarage{
+/**
  * AGarage\BlogComment
  *
  * @property integer $id
