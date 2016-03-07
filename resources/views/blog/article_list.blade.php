@@ -9,7 +9,15 @@
 @endsection
 
 @section('middle_col')
-    <span>{{ trans('blog.article_list') }}</span>
+    <div class="row">
+        <div class="col-md-11">
+            <span>{{ trans('blog.article_list') }}</span>
+        </div>
+        <div class="col-md-1">
+            <a class="btn btn-success" href="{{ route('blog.article.new') }}">新建</a>
+        </div>
+    </div>
+
     <div class="list-group">
         @foreach($articles as $article)
             <a href="{{ route('blog.article', ['id' => $article->id]) }}" class="list-group-item">

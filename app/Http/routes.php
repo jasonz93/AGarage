@@ -50,10 +50,6 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'BlogController@saveArticle',
             'as' => 'blog.article.save'
         ]);
-        Route::get('/blog/article/{article}/ajax', [
-            'uses' => 'BlogController@ajaxShowArticle',
-            'as' => 'blog.article.ajax'
-        ]);
     });
 
     Route::group(['namespace' => 'Resume'], function () {

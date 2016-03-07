@@ -46,28 +46,29 @@ class BlogController extends Controller
     }
 
     public function showEditArticle(BlogArticle $article) {
+        $topics = BlogTopic::all();
         return view('blog.article_edit', [
+            'topics' => $topics,
             'article' => $article
         ]);
     }
 
     public function saveArticle(Request $request, BlogArticle $article) {
-        if ($article->exists) {
-            $article->title = $request->input('title');
-            $article->content = $request->input('content');
-            $article->save();
-        } else {
-            $article = BlogArticle::create([
-                'title' => $request->input('title'),
-                'content' => $request->input('content')
-            ]);
+        if (!$article->exists) {
+            $article = new BlogArticle();
         }
+        $topicsInput = $request->input('topics');
+        $topicIds = [];
+        foreach ($topicsInput as $topicInput) {
+            $topic = BlogTopic::firstOrCreate(['name' => $topicInput]);
+            $topicIds[] = $topic->id;
+        }
+        $article->title = $request->input('title');
+        $article->content = $request->input('content');
+        $article->save();
+        $article->topics()->sync($topicIds);
         return redirect()->route('blog.article', [
             'article' => $article->id
         ]);
-    }
-
-    public function ajaxShowArticle(BlogArticle $article) {
-
     }
 }
