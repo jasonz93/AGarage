@@ -6,11 +6,14 @@
  * Time: 下午3:26
  */
 const GITHUB_REPO_URL = 'https://github.com/jasonz93/AGarage';
+$config = json_decode(file_get_contents(__DIR__.'/ghook.json'), true);
+$projectPath = __DIR__."/{$config['projectRootRelative']}";
+$outputFile = $projectPath.$config['output'];
 
 $header = getHeaders();
 $payload = json_decode(file_get_contents('php://input'), true);
 
-$log = fopen(__DIR__.'/../storage/logs/github_hook.log', 'a');
+$log = fopen($outputFile, 'a');
 
 $event = $header['x-github-event'];
 
@@ -28,8 +31,6 @@ switch ($event) {
 }
 
 HANDLE_PUSH_EVENT:
-$projectPath = __DIR__.'/../';
-writeLog($log, "Project dir is $projectPath");
 chdir($projectPath);
 $branch = explode('/', $payload['ref'])[2];
 writeLog($log, "Push Branch: $branch");
@@ -40,7 +41,7 @@ $currentBranch = $currentBranchArr[count($currentBranchArr) - 1];
 writeLog($log, "Current Branch: $currentBranch");
 $headCommit = $payload['head_commit'];
 $repository = $payload['repository'];
-if ($repository['url'] !== GITHUB_REPO_URL) {
+if ($repository['url'] !== $config['repoUrl']) {
     writeLog($log, "Not this repository.");
     goto END;
 }
@@ -56,18 +57,15 @@ $output = [];
 writeLog($log, "Updating project from github...");
 exec("git pull", $output);
 writeLog($log, $output);
-writeLog($log, "Updating composer dependencies...");
-$output = [];
-exec('composer update', $output);
-writeLog($log, $output);
-$output = [];
-writeLog($log, "Migrating database...");
-exec("php artisan migrate", $output);
-writeLog($log, $output);
-$output = [];
-writeLog($log, "Running gulp...");
-exec("gulp", $output);
-writeLog($log, $output);
+
+$tasks = $config['tasks'];
+foreach ($tasks as $task) {
+    writeLog($log, $task['preMsg']);
+    $output = [];
+    exec($task['command'], $output);
+    writeLog($log, $output);
+    writeLog($log, $task['postMsg']);
+}
 
 goto END;
 
