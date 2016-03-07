@@ -1,0 +1,22 @@
+{
+  "repoUrl": "https://github.com/jasonz93/AGarage",
+  "projectRootRelative": "../",
+  "output": "storage/logs/ghook.log",
+  "tasks": [
+    {
+      "preMsg": "Updating composer dependencies...",
+      "command": "composer update",
+      "postMsg": ""
+    },
+    {
+      "preMsg": "Migrating database",
+      "command": "php artisan migrate",
+      "postMsg": ""
+    },
+    {
+      "preMsg": "Running gulp tasks...",
+      "command": "gulp",
+      "postMsg": ""
+    }
+  ]
+}
