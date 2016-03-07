@@ -6,6 +6,19 @@
  * Time: 下午3:26
  * 一个简单的Github Hook，可以在接收到push事件的时候pull最新的代码并执行设定的命令。
  * pull代码前判断了该push事件对应的分支，如果与本地项目当前分支不同则不执行任何操作。
+ * 配置文件说明:
+ * {
+ *      "repoUrl": "https://github.com/jasonz93/AGarage",   //项目的Github地址
+ *      "projectRootRelative": "../",   //任务命令工作目录相对于脚本文件的相对路径（一般是项目根目录）
+ *      "output": "storage/logs/ghook.log",   //输出的日志文件（相对于projectRootRelative的相对路径）
+ *      "tasks": [
+ *          {
+ *              "preMsg": "Updating composer dependencies...",  //任务开始前打印的信息
+ *              "command": "composer update",   //任务执行的命令
+ *              "postMsg": ""   //任务结束后打印的信息
+ *          }
+ *      ]
+ * }
  */
 
 fastcgi_finish_request();

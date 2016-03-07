@@ -1,12 +1,12 @@
 {
-  "repoUrl": "https://github.com/jasonz93/AGarage",   //项目的Github地址
-  "projectRootRelative": "../",   //任务命令工作目录相对于脚本文件的相对路径（一般是项目根目录）
-  "output": "storage/logs/ghook.log",   //输出的日志文件（相对于projectRootRelative的相对路径）
+  "repoUrl": "https://github.com/jasonz93/AGarage",
+  "projectRootRelative": "../",
+  "output": "storage/logs/ghook.log",
   "tasks": [
     {
-      "preMsg": "Updating composer dependencies...",  //任务开始前打印的信息
-      "command": "composer update",   //任务执行的命令
-      "postMsg": ""   //任务结束后打印的信息
+      "preMsg": "Updating composer dependencies...",
+      "command": "composer update",
+      "postMsg": ""
     },
     {
       "preMsg": "Migrating database",
