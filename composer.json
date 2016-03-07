@@ -43,7 +43,8 @@
         ],
         "post-install-cmd": [
             "php artisan clear-compiled",
-            "php artisan optimize"
+            "php artisan optimize",
+            "cp -R patch/vendor ./"
         ],
         "pre-update-cmd": [
             "php artisan clear-compiled"
@@ -51,7 +52,8 @@
         "post-update-cmd": [
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "cp -R patch/vendor ./"
         ]
     },
     "config": {

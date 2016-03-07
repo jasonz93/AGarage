@@ -28,7 +28,8 @@ switch ($event) {
 }
 
 HANDLE_PUSH_EVENT:
-$projectPath = dirname(__DIR__.'/../');
+$projectPath = __DIR__.'/../';
+writeLog($log, "Project dir is $projectPath");
 chdir($projectPath);
 $branch = explode('/', $payload['ref'])[2];
 writeLog($log, "Push Branch: $branch");
@@ -53,6 +54,14 @@ if (count($headCommit['added']) + count($headCommit['removed']) + count($headCom
 $output = [];
 writeLog($log, "Updating project from github...");
 exec("git pull", $output);
+writeLog($log, $output);
+writeLog($log, "Updating composer dependencies...");
+$output = [];
+exec('composer update', $output);
+writeLog($log, $output);
+$output = [];
+writeLog($log, "Migrating database...");
+exec("php artisan migrate", $output);
 writeLog($log, $output);
 $output = [];
 writeLog($log, "Running gulp...");
