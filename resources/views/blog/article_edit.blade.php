@@ -87,7 +87,6 @@
             for (var i in selectedTopics) {
                 $('<option>').attr('value', selectedTopics[i]).attr('selected', true).appendTo($('#topics'));
             }
-//            alert(editor.getMarkdown());
             $('form').submit();
         });
     </script>

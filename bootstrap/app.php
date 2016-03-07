@@ -11,18 +11,6 @@
 |
 */
 
-require_once 'sae_hooks.php';
-
-if (is_sae()) {
-    $app = new \AGarage\Extensions\SaeApplication(
-        realpath(__DIR__.'/../')
-    );
-} else {
-    $app = new Illuminate\Foundation\Application(
-        realpath(__DIR__.'/../')
-    );
-}
-
 
 /*
 |--------------------------------------------------------------------------
@@ -35,16 +23,11 @@ if (is_sae()) {
 |
 */
 
-if (is_sae()) {
-    $app->singleton(
-        Illuminate\Contracts\Http\Kernel::class,
-        AGarage\Http\SaeKernel::class);
-} else {
-    $app->singleton(
-        Illuminate\Contracts\Http\Kernel::class,
-        AGarage\Http\Kernel::class
-    );
-}
+
+$app->singleton(
+    Illuminate\Contracts\Http\Kernel::class,
+    AGarage\Http\Kernel::class
+);
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,

@@ -4,6 +4,8 @@
  * User: nicholas
  * Date: 16-3-7
  * Time: 下午3:26
+ * 一个简单的Github Hook，可以在接收到push事件的时候pull最新的代码并执行设定的命令。
+ * pull代码前判断了该push事件对应的分支，如果与本地项目当前分支不同则不执行任何操作。
  */
 
 fastcgi_finish_request();
