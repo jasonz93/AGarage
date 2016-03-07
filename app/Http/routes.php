@@ -58,4 +58,18 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'resume'
         ]);
     });
+
+    Route::group([
+        'namespace' => 'Admin',
+        'middleware' => ['admin']
+    ], function () {
+        Route::get('/admin', [
+            'uses' => 'AdminController@showIndex',
+            'as' => 'admin'
+        ]);
+        Route::get('/admin/statistics', [
+            'uses' => 'StatisticsController@showIndex',
+            'as' => 'admin.statistics'
+        ]);
+    });
 });

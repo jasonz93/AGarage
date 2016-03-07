@@ -11,7 +11,6 @@
         "barryvdh/laravel-ide-helper": "^2.1",
         "erusev/parsedown": "^1.6",
         "doctrine/dbal": "^2.5",
-        "yuanchao/laravel-5-markdown-editor": "dev-master",
         "illuminate/html": "^5.0"
     },
     "require-dev": {

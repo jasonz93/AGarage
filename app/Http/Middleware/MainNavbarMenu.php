@@ -9,6 +9,7 @@
 namespace AGarage\Http\Middleware;
 
 use Closure;
+use Lavary\Menu\Builder;
 use Menu;
 
 class MainNavbarMenu
@@ -24,6 +25,12 @@ class MainNavbarMenu
             ]);
             $menu->add(trans('resume.resume'), [
                 'route' => 'resume'
+            ]);
+        });
+
+        Menu::make('RightNavbar', function (Builder $menu) {
+            $menu->add(trans('admin.admin'), [
+                'route' => 'admin'
             ]);
         });
 

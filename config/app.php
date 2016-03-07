@@ -154,13 +154,13 @@ return [
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         \AGarage\Providers\ParsedownProvider::class,
-        \YuanChao\Editor\EndaEditorServiceProvider::class,
         AGarage\Providers\AppServiceProvider::class,
         AGarage\Providers\AuthServiceProvider::class,
         AGarage\Providers\EventServiceProvider::class,
         AGarage\Providers\RouteServiceProvider::class,
         \AGarage\Providers\SiteConfigProvider::class,
         \Lavary\Menu\ServiceProvider::class,
+        \AGarage\Providers\UtilsProvider::class,
 
     ],
 
@@ -212,6 +212,7 @@ return [
         'EndaEditor' => \YuanChao\Editor\Facade\EndaEditorFacade::class,
         'Form'      => \Illuminate\Html\FormFacade::class,
         'HTML'      => \Illuminate\Html\HtmlFacade::class,
+        'Utils'     => \AGarage\Facades\UtilsFacade::class,
 
     ],
 

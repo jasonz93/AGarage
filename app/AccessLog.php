@@ -9,6 +9,7 @@ class AccessLog extends Model
     protected $fillable = [
         'client_ip',
         'user_agent',
-        'resource'
+        'resource',
+        'exec_time'
     ];
 }

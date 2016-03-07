@@ -10816,33 +10816,6 @@ namespace {
     }
 
 
-    class EndaEditor extends \YuanChao\Editor\Facade\EndaEditorFacade{
-        
-        /**
-         * EndaEditor Upload ImgFile
-         *
-         * @param string $path
-         * @return array 
-         * @static 
-         */
-        public static function uploadImgFile($path){
-            return \YuanChao\Editor\EndaEditor::uploadImgFile($path);
-        }
-        
-        /**
-         * 转换 mark 文本
-         *
-         * @param $markdownText
-         * @return string 
-         * @static 
-         */
-        public static function MarkDecode($markdownText){
-            return \YuanChao\Editor\EndaEditor::MarkDecode($markdownText);
-        }
-        
-    }
-
-
     class Form extends \Illuminate\Html\FormFacade{
         
         /**
@@ -11492,6 +11465,20 @@ namespace {
          */
         public static function hasMacro($name){
             return \Illuminate\Html\HtmlBuilder::hasMacro($name);
+        }
+        
+    }
+
+
+    class Utils extends \AGarage\Facades\UtilsFacade{
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getMilliTimestampDouble(){
+            return \AGarage\Extensions\Utils::getMilliTimestampDouble();
         }
         
     }

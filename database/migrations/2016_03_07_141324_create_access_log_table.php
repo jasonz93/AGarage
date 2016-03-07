@@ -17,6 +17,7 @@ class CreateAccessLogTable extends Migration
             $table->string('client_ip', 15);
             $table->string('user_agent');
             $table->string('resource');
+            $table->float("exec_time", 8, 3);
             $table->timestamps();
         });
     }

@@ -16,7 +16,6 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \AGarage\Http\Middleware\MainNavbarMenu::class,
     ];
 
     /**
@@ -26,17 +25,21 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
+            \AGarage\Http\Middleware\StatisticMiddleware::class,
             \AGarage\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \AGarage\Http\Middleware\VerifyCsrfToken::class,
-            \AGarage\Http\Middleware\StatisticMiddleware::class,
+            \AGarage\Http\Middleware\MainNavbarMenu::class,
         ],
 
         'api' => [
             'throttle:60,1',
         ],
+        'admin' => [
+            \AGarage\Http\Middleware\AdminSidebarMenu::class,
+        ]
     ];
 
     /**
