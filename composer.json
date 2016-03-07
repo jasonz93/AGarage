@@ -42,18 +42,18 @@
             "php artisan key:generate"
         ],
         "post-install-cmd": [
+            "cp -R patch/vendor ./",
             "php artisan clear-compiled",
-            "php artisan optimize",
-            "cp -R patch/vendor ./"
+            "php artisan optimize"
         ],
         "pre-update-cmd": [
             "php artisan clear-compiled"
         ],
         "post-update-cmd": [
+            "cp -R patch/vendor ./",
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
-            "php artisan optimize",
-            "cp -R patch/vendor ./"
+            "php artisan optimize"
         ]
     },
     "config": {
