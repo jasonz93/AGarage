@@ -5,7 +5,9 @@
  * Date: 16-3-7
  * Time: 下午3:26
  */
-const GITHUB_REPO_URL = 'https://github.com/jasonz93/AGarage';
+
+fastcgi_finish_request();
+
 $config = json_decode(file_get_contents(__DIR__.'/ghook.json'), true);
 $projectPath = __DIR__."/{$config['projectRootRelative']}";
 $outputFile = $projectPath.$config['output'];
