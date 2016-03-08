@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.22 on 2016-03-07.
+ * Generated for Laravel 5.2.22 on 2016-03-08.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -10816,6 +10816,92 @@ namespace {
     }
 
 
+    class EndaEditor extends \YuanChao\Editor\Facade\EndaEditorFacade{
+        
+        /**
+         * Hotswap the underlying instance behind the facade.
+         *
+         * @param mixed $instance
+         * @return void 
+         * @static 
+         */
+        public static function swap($instance){
+            //Method inherited from \Illuminate\Support\Facades\Facade            
+            \YuanChao\Editor\Facade\EndaEditorFacade::swap($instance);
+        }
+        
+        /**
+         * Initiate a mock expectation on the facade.
+         *
+         * @param mixed
+         * @return \Mockery\Expectation 
+         * @static 
+         */
+        public static function shouldReceive(){
+            //Method inherited from \Illuminate\Support\Facades\Facade            
+            return \YuanChao\Editor\Facade\EndaEditorFacade::shouldReceive();
+        }
+        
+        /**
+         * Get the root object behind the facade.
+         *
+         * @return mixed 
+         * @static 
+         */
+        public static function getFacadeRoot(){
+            //Method inherited from \Illuminate\Support\Facades\Facade            
+            return \YuanChao\Editor\Facade\EndaEditorFacade::getFacadeRoot();
+        }
+        
+        /**
+         * Clear a resolved facade instance.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function clearResolvedInstance($name){
+            //Method inherited from \Illuminate\Support\Facades\Facade            
+            \YuanChao\Editor\Facade\EndaEditorFacade::clearResolvedInstance($name);
+        }
+        
+        /**
+         * Clear all of the resolved instances.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function clearResolvedInstances(){
+            //Method inherited from \Illuminate\Support\Facades\Facade            
+            \YuanChao\Editor\Facade\EndaEditorFacade::clearResolvedInstances();
+        }
+        
+        /**
+         * Get the application instance behind the facade.
+         *
+         * @return \Illuminate\Contracts\Foundation\Application 
+         * @static 
+         */
+        public static function getFacadeApplication(){
+            //Method inherited from \Illuminate\Support\Facades\Facade            
+            return \YuanChao\Editor\Facade\EndaEditorFacade::getFacadeApplication();
+        }
+        
+        /**
+         * Set the application instance.
+         *
+         * @param \Illuminate\Contracts\Foundation\Application $app
+         * @return void 
+         * @static 
+         */
+        public static function setFacadeApplication($app){
+            //Method inherited from \Illuminate\Support\Facades\Facade            
+            \YuanChao\Editor\Facade\EndaEditorFacade::setFacadeApplication($app);
+        }
+        
+    }
+
+
     class Form extends \Illuminate\Html\FormFacade{
         
         /**
@@ -11479,6 +11565,20 @@ namespace {
          */
         public static function getMilliTimestampDouble(){
             return \AGarage\Extensions\Utils::getMilliTimestampDouble();
+        }
+        
+    }
+
+
+    class Statistic extends \AGarage\Facades\StatisticFacade{
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getDailyStatistics(){
+            return \AGarage\Services\StatisticService::getDailyStatistics();
         }
         
     }

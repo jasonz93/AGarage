@@ -161,6 +161,7 @@ return [
         \AGarage\Providers\SiteConfigProvider::class,
         \Lavary\Menu\ServiceProvider::class,
         \AGarage\Providers\UtilsProvider::class,
+        \AGarage\Providers\StatisticServiceProvider::class,
 
     ],
 
@@ -213,6 +214,7 @@ return [
         'Form'      => \Illuminate\Html\FormFacade::class,
         'HTML'      => \Illuminate\Html\HtmlFacade::class,
         'Utils'     => \AGarage\Facades\UtilsFacade::class,
+        'Statistic' => \AGarage\Facades\StatisticFacade::class,
 
     ],
 

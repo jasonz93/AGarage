@@ -6,10 +6,16 @@
  * Time: 0:32
  */
 return [
+    'admin' => '管理',
     'statistics' => [
         'statistics' => '统计',
-        'daily_pv' => '当日PV',
-        'daily_ip' => '当日IP',
-        'daily_resources' => '当日资源访问',
+        'daily' => [
+            'pv' => '当日PV',
+            'ip' => '当日IP',
+            'maxExecTime' => '当日最大执行时间',
+            'avgExecTime' => '当日平均执行时间',
+            'resources_pv' => '当日资源访问PV',
+            'resources_ip' => '当日资源访问IP'
+        ]
     ]
 ];
