@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
         ],
         'admin' => [
             \AGarage\Http\Middleware\AdminSidebarMenu::class,
+            'role:admin'
         ]
     ];
 
@@ -55,5 +56,8 @@ class Kernel extends HttpKernel
         'guest' => \AGarage\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'blog.topic' => \AGarage\Http\Middleware\BlogTopicInjector::class,
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+        'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+        'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
     ];
 }

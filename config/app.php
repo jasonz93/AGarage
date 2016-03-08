@@ -162,6 +162,8 @@ return [
         \Lavary\Menu\ServiceProvider::class,
         \AGarage\Providers\UtilsProvider::class,
         \AGarage\Providers\StatisticServiceProvider::class,
+        \Zizaco\Entrust\EntrustServiceProvider::class,
+        \AGarage\Providers\InitializeProvider::class,
 
     ],
 
@@ -210,11 +212,11 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Menu'      => Lavary\Menu\Facade::class,
         'Markdown' => \AGarage\Facades\ParsedownFacade::class,
-        'EndaEditor' => \YuanChao\Editor\Facade\EndaEditorFacade::class,
         'Form'      => \Illuminate\Html\FormFacade::class,
         'HTML'      => \Illuminate\Html\HtmlFacade::class,
         'Utils'     => \AGarage\Facades\UtilsFacade::class,
         'Statistic' => \AGarage\Facades\StatisticFacade::class,
+        'Entrust'   => \Zizaco\Entrust\EntrustFacade::class,
 
     ],
 

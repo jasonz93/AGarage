@@ -14,7 +14,9 @@
             <span>{{ trans('blog.article_list') }}</span>
         </div>
         <div class="col-md-1">
+            @role('admin')
             <a class="btn btn-success" href="{{ route('blog.article.new') }}">新建</a>
+            @endrole
         </div>
     </div>
 

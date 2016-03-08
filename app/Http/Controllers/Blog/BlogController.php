@@ -58,6 +58,9 @@ class BlogController extends Controller
             $article = new BlogArticle();
         }
         $topicsInput = $request->input('topics');
+        if ($topicsInput == null) {
+            $topicsInput = [];
+        }
         $topicIds = [];
         foreach ($topicsInput as $topicInput) {
             $topic = BlogTopic::firstOrCreate(['name' => $topicInput]);

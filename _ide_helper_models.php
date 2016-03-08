@@ -10,6 +10,28 @@
 
 namespace AGarage{
 /**
+ * AGarage\AccessLog
+ *
+ * @property integer $id
+ * @property string $client_ip
+ * @property string $user_agent
+ * @property string $resource
+ * @property float $exec_time
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\AccessLog whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\AccessLog whereClientIp($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\AccessLog whereUserAgent($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\AccessLog whereResource($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\AccessLog whereExecTime($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\AccessLog whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\AccessLog whereUpdatedAt($value)
+ */
+	class AccessLog extends \Eloquent {}
+}
+
+namespace AGarage{
+/**
  * AGarage\BlogArticle
  *
  * @property integer $id
@@ -26,53 +48,6 @@ namespace AGarage{
  * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogArticle whereUpdatedAt($value)
  */
 	class BlogArticle extends \Eloquent {}
-}
-
-namespace AGarage{
-/**
- * AGarage\User
- *
- * @property integer $id
- * @property string $name
- * @property string $email
- * @property string $password
- * @property string $remember_token
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\AGarage\User wherePassword($value)
- * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereRememberToken($value)
- * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereUpdatedAt($value)
- */
-	class User extends \Eloquent {}
-}
-
-namespace AGarage{
-/**
- * AGarage\BlogTopic
- *
- * @property integer $id
- * @property string $name
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\AGarage\BlogArticle[] $articles
- * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogTopic whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogTopic whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogTopic whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogTopic whereUpdatedAt($value)
- */
-	class BlogTopic extends \Eloquent {}
-}
-
-namespace AGarage{
-/**
- * AGarage\AccessLog
- *
- */
-	class AccessLog extends \Eloquent {}
 }
 
 namespace AGarage{
@@ -94,5 +69,88 @@ namespace AGarage{
  * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogComment whereUpdatedAt($value)
  */
 	class BlogComment extends \Eloquent {}
+}
+
+namespace AGarage{
+/**
+ * AGarage\BlogTopic
+ *
+ * @property integer $id
+ * @property string $name
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\AGarage\BlogArticle[] $articles
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogTopic whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogTopic whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogTopic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\BlogTopic whereUpdatedAt($value)
+ */
+	class BlogTopic extends \Eloquent {}
+}
+
+namespace AGarage{
+/**
+ * AGarage\Permission
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $display_name
+ * @property string $description
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\AGarage\Role[] $roles
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Permission whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Permission whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Permission whereDisplayName($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Permission whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Permission whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Permission whereUpdatedAt($value)
+ */
+	class Permission extends \Eloquent {}
+}
+
+namespace AGarage{
+/**
+ * AGarage\Role
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $display_name
+ * @property string $description
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\AGarage\User[] $users
+ * @property-read \Illuminate\Database\Eloquent\Collection|\AGarage\Permission[] $perms
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Role whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Role whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Role whereDisplayName($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Role whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Role whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\Role whereUpdatedAt($value)
+ */
+	class Role extends \Eloquent {}
+}
+
+namespace AGarage{
+/**
+ * AGarage\User
+ *
+ * @property integer $id
+ * @property string $nickname
+ * @property string $email
+ * @property string $password
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\AGarage\Role[] $roles
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereNickname($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereUpdatedAt($value)
+ */
+	class User extends \Eloquent {}
 }
 

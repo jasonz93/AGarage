@@ -6,7 +6,9 @@
             <h1>{{ $article->title }}</h1>
         </div>
         <div class="col-md-1">
+            @role('admin')
             <a class="btn btn-info" href="{{ route('blog.article.edit', ['article' => $article->id]) }}">编辑</a>
+            @endrole
         </div>
     </div>
 

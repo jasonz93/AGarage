@@ -25,7 +25,44 @@
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', [ 'uses' => 'DefaultController@showHomepage', 'as' => 'homepage']);
 
+    Route::group(['namespace' => 'Auth'], function () {
+        Route::get('/login', [
+            'uses' => 'AuthController@getLogin',
+            'as' => 'auth.login'
+        ]);
+        Route::post('/login', [
+            'uses' => 'AuthController@postLogin',
+            'as' => 'auth.login.action'
+        ]);
+        Route::get('/logout', [
+            'uses' => 'AuthController@getLogout',
+            'as' => 'auth.logout'
+        ]);
+        Route::get('/register', [
+            'uses' => 'AuthController@getRegister',
+            'as' => 'auth.register'
+        ]);
+        Route::post('/register', [
+            'uses' => 'AuthController@postRegister',
+            'as' => 'auth.register.action'
+        ]);
+    });
+
     Route::group(['namespace' => 'Blog'], function () {
+        Route::group(['middleware' => ['role:admin']], function () {
+            Route::get('/blog/article/new', [
+                'uses' => 'BlogController@showEditArticle',
+                'as' => 'blog.article.new'
+            ]);
+            Route::get('/blog/article/{article}/edit', [
+                'uses' => 'BlogController@showEditArticle',
+                'as' => 'blog.article.edit'
+            ]);
+            Route::post('/blog/article/{article?}', [
+                'uses' => 'BlogController@saveArticle',
+                'as' => 'blog.article.save'
+            ]);
+        });
         Route::get('/blog', [
             'uses' => 'BlogController@showIndex',
             'as' => 'blog'
@@ -34,21 +71,9 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'BlogController@showArticleList',
             'as' => 'blog.article.list'
         ]);
-        Route::get('/blog/article/new', [
-            'uses' => 'BlogController@showEditArticle',
-            'as' => 'blog.article.new'
-        ]);
         Route::get('/blog/article/{article}', [
             'uses' => 'BlogController@showArticle',
             'as' => 'blog.article'
-        ]);
-        Route::get('/blog/article/{article}/edit', [
-            'uses' => 'BlogController@showEditArticle',
-            'as' => 'blog.article.edit'
-        ]);
-        Route::post('/blog/article/{article?}', [
-            'uses' => 'BlogController@saveArticle',
-            'as' => 'blog.article.save'
         ]);
     });
 

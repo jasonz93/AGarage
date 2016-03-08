@@ -28,7 +28,7 @@ class AuthController extends DefaultController
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo;
 
     /**
      * Create a new authentication controller instance.
@@ -37,7 +37,8 @@ class AuthController extends DefaultController
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->redirectTo = route('auth.login', [], false);
     }
 
     /**
@@ -49,7 +50,7 @@ class AuthController extends DefaultController
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'nickname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -64,7 +65,7 @@ class AuthController extends DefaultController
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'nickname' => $data['nickname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);

@@ -14,8 +14,14 @@
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
-            {!! $MainNavbar->asUl(['class' => 'nav navbar-nav']) !!}
-            {!! $RightNavbar->asUl(['class' => 'nav navbar-nav navbar-right']) !!}
+            <ul class="nav navbar-nav">
+                @include('vendor.laravel-menu.bootstrap-navbar-items', ['items' => $MainNavbar->roots()])
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @include('vendor.laravel-menu.bootstrap-navbar-items', ['items' => $RightNavbar->roots()])
+            </ul>
+            {{--{!! $MainNavbar->asUl(['class' => 'nav navbar-nav']) !!}--}}
+            {{--{!! $RightNavbar->asUl(['class' => 'nav navbar-nav navbar-right']) !!}--}}
             {{--<ul class="nav navbar-nav navbar-right">--}}
                 {{--<li><a href="#">Link</a></li>--}}
                 {{--<li class="dropdown">--}}
