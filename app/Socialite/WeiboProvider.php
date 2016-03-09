@@ -56,7 +56,7 @@ class WeiboProvider extends AbstractProvider implements ProviderInterface
         $user = json_decode($response->getBody(), true);
 
 
-        $user['email'] = $this->getEmailByToken($token);
+//        $user['email'] = $this->getEmailByToken($token);
 
         return $user;
 
@@ -92,7 +92,7 @@ class WeiboProvider extends AbstractProvider implements ProviderInterface
                 'id' => strval($user['id']),
                 'nickname' => $user['screen_name'],
                 'name' => $user['name'],
-                'email' => $user['email'],
+//                'email' => $user['email'],
                 'avatar' => $user['avatar_large']
             ]);
     }
