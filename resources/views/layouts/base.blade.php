@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+    <meta property="wb:webmaster" content="d28bcd86d443ecb9" />
     <title>{{ $site_name  }}——@yield('title')</title>
     @yield('stylesheets')
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />

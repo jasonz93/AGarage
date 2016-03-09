@@ -164,6 +164,7 @@ return [
         \AGarage\Providers\StatisticServiceProvider::class,
         \Zizaco\Entrust\EntrustServiceProvider::class,
         \AGarage\Providers\InitializeProvider::class,
+        \Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -217,6 +218,7 @@ return [
         'Utils'     => \AGarage\Facades\UtilsFacade::class,
         'Statistic' => \AGarage\Facades\StatisticFacade::class,
         'Entrust'   => \Zizaco\Entrust\EntrustFacade::class,
+        'Socialite' => \Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

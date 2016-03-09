@@ -23,7 +23,7 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/', [ 'uses' => 'DefaultController@showHomepage', 'as' => 'homepage']);
+    Route::get('/', [ 'uses' => 'IndexController@showHomepage', 'as' => 'homepage']);
 
     Route::group(['namespace' => 'Auth'], function () {
         Route::get('/login', [
@@ -45,6 +45,23 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/register', [
             'uses' => 'AuthController@postRegister',
             'as' => 'auth.register.action'
+        ]);
+
+        Route::get('/socialite/linkedin', [
+            'uses' => 'SocialiteController@redirectToLinkedin',
+            'as' => 'socialite.linkedin'
+        ]);
+        Route::get('/socialite/linkedin/callback', [
+            'uses' => 'SocialiteController@handleLinkedinCallback',
+            'as' => 'socialite.linkedin.callback'
+        ]);
+        Route::get('/socialite/github', [
+            'uses' => 'SocialiteController@redirectToGithub',
+            'as' => 'socialite.github'
+        ]);
+        Route::get('/socialite/github/callback', [
+            'uses' => 'SocialiteController@handleGithubCallback',
+            'as' => 'socialite.github.callback'
         ]);
     });
 

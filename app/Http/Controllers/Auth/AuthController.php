@@ -4,11 +4,11 @@ namespace AGarage\Http\Controllers\Auth;
 
 use AGarage\User;
 use Validator;
-use AGarage\Http\Controllers\DefaultController;
+use AGarage\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends DefaultController
+class AuthController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
