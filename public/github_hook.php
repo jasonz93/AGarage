@@ -48,7 +48,6 @@ switch ($event) {
 }
 
 HANDLE_PUSH_EVENT:
-chdir($projectPath);
 $branch = explode('/', $payload['ref'])[2];
 writeLog($log, "Push Branch: $branch");
 $output = [];
@@ -70,25 +69,14 @@ if (count($headCommit['added']) + count($headCommit['removed']) + count($headCom
     writeLog($log, "No file changed.");
     goto END;
 }
-$output = [];
-writeLog($log, "Updating project from github...");
-exec("git pull", $output);
-writeLog($log, $output);
 
-$tasks = $config['tasks'];
-foreach ($tasks as $task) {
-    writeLog($log, $task['preMsg']);
-    $output = [];
-    exec($task['command'], $output);
-    writeLog($log, $output);
-    writeLog($log, $task['postMsg']);
-}
+shell_exec('php ghook_worker.php &');
+writeLog($log, "Github Hook worker started.");
 
 goto END;
 
 
 END:
-writeLog($log, "Github Hook done.");
 fclose($log);
 
 
