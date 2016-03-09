@@ -70,7 +70,7 @@ if (count($headCommit['added']) + count($headCommit['removed']) + count($headCom
     goto END;
 }
 
-shell_exec('php ghook_worker.php &');
+shell_exec('nohup php ghook_worker.php &');
 writeLog($log, "Github Hook worker started.");
 
 goto END;

@@ -53,12 +53,10 @@ class WeiboProvider extends AbstractProvider implements ProviderInterface
         $userUrl = "https://api.weibo.com/2/account/get_uid.json?access_token=$token&uid=$uid";
         $response = $this->getHttpClient()->get($userUrl);
 
-        $user = json_decode($response, true);
+        $user = json_decode($response->getBody(), true);
 
-        $emailUrl = 'https://api.weibo.com/2/account/profile/email.json?access_token='.$token;
-        $response = $this->getHttpClient()->get($emailUrl);
-        $email = json_decode($response, true);
-        $user['email'] = $email['email'];
+
+        $user['email'] = $this->getEmailByToken($token);
 
         return $user;
 
@@ -69,9 +67,16 @@ class WeiboProvider extends AbstractProvider implements ProviderInterface
         $uidUrl = 'https://api.weibo.com/2/account/get_uid.json?access_token='.$token;
         $response = $this->getHttpClient()->get($uidUrl);
 
-        $json = json_decode($response, true);
+        $json = json_decode($response->getBody(), true);
 
         return $json['uid'];
+    }
+
+    protected function getEmailByToken($token) {
+        $emailUrl = 'https://api.weibo.com/2/account/profile/email.json?access_token='.$token;
+        $response = $this->getHttpClient()->get($emailUrl);
+        $email = json_decode($response->getBody(), true);
+        return $email['email'];
     }
 
     /**
