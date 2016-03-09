@@ -63,6 +63,14 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'SocialiteController@handleGithubCallback',
             'as' => 'socialite.github.callback'
         ]);
+        Route::get('/socialite/weibo', [
+            'uses' => 'SocialiteController@redirectToWeibo',
+            'as' => 'socialite.weibo'
+        ]);
+        Route::get('/socialite/weibo/callback', [
+            'uses' => 'SocialiteController@handleWeiboCallback',
+            'as' => 'socialite.weibo.callback'
+        ]);
     });
 
     Route::group(['namespace' => 'Blog'], function () {

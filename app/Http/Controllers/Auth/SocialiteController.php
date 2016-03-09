@@ -32,4 +32,13 @@ class SocialiteController extends Controller
         $user = Socialite::driver('github')->user();
         return Response::make(print_r($user, true));
     }
+
+    public function redirectToWeibo() {
+        return Socialite::driver('weibo')->redirect();
+    }
+
+    public function handleWeiboCallback() {
+        $user = Socialite::driver('weibo')->user();
+        return Response::make(var_export($user, true));
+    }
 }

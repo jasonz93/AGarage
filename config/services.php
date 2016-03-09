@@ -47,4 +47,10 @@ return [
         'redirect' => env('APP_URL').'/socialite/github/callback'
     ],
 
+    'weibo' => [
+        'client_id' => env('WEIBO_CLIENT_ID'),
+        'client_secret' => env('WEIBO_CLIENT_SECRET'),
+        'redirect' => env('APP_URL').'/socialite/weibo/callback'
+    ],
+
 ];

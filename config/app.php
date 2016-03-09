@@ -165,6 +165,7 @@ return [
         \Zizaco\Entrust\EntrustServiceProvider::class,
         \AGarage\Providers\InitializeProvider::class,
         \Laravel\Socialite\SocialiteServiceProvider::class,
+        \AGarage\Providers\SocialiteProvider::class,
 
     ],
 
