@@ -133,6 +133,37 @@ namespace AGarage{
 
 namespace AGarage{
 /**
+ * AGarage\SocialiteUser
+ *
+ * @property string $id
+ * @property string $driver
+ * @property integer $user_id
+ * @property string $token
+ * @property string $secret
+ * @property string $name
+ * @property string $nickname
+ * @property string $email
+ * @property string $raw
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \AGarage\User $user
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereDriver($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereSecret($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereNickname($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereRaw($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereUpdatedAt($value)
+ */
+	class SocialiteUser extends \Eloquent {}
+}
+
+namespace AGarage{
+/**
  * AGarage\User
  *
  * @property integer $id
@@ -142,6 +173,7 @@ namespace AGarage{
  * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read \AGarage\SocialiteUser $socialite
  * @property-read \Illuminate\Database\Eloquent\Collection|\AGarage\Role[] $roles
  * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereNickname($value)

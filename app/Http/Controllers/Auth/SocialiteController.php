@@ -10,18 +10,36 @@ namespace AGarage\Http\Controllers\Auth;
 
 
 use AGarage\Http\Controllers\Controller;
+use AGarage\SocialiteUser;
 use Socialite;
 use Response;
 
 class SocialiteController extends Controller
 {
-    public function redirectToLinkedin() {
-        return Socialite::driver('linkedin')->redirect();
+    public function redirectTo($driver) {
+        return Socialite::driver($driver)->redirect();
     }
 
-    public function handleLinkedinCallback() {
-        $user = Socialite::driver('linkedin')->user();
-        return Response::make(print_r($user, true));
+    public function handleCallback($driver) {
+        $socialite = Socialite::driver($driver)->user();
+        $socialiteUser = SocialiteUser::where('id', '=', $socialite->id)->where('driver', '=', $driver)->first();
+        if ($socialiteUser == null) {
+            $socialiteUser = new SocialiteUser();
+            $socialiteUser->id = $socialite->id;
+            $socialiteUser->driver = $driver;
+            $socialiteUser->name = $socialite->name;
+            $socialiteUser->email = $socialite->email;
+            $socialiteUser->nickname = $socialite->nickname;
+            $socialiteUser->avatar = $socialite->avatar;
+            $socialiteUser->setRawUser($socialite->user);
+            $user = $socialiteUser->createUser();
+            $socialiteUser->user()->associate($user);
+            $socialiteUser->save();
+        } else {
+            $user = $socialiteUser->user;
+        }
+        \Auth::login($user);
+        return Response::redirectTo('/');
     }
 
     public function redirectToGithub() {

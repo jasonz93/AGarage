@@ -58,10 +58,21 @@
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">{{ trans('auth.forgotpassword') }}</a>
                             </div>
                         </div>
+                        <div class="col-md-8 col-md-offset-2">
+                            <a href="{{ route('socialite', ['driver' => 'weibo']) }}"><img class="login-3rd" src="{{ asset('images/weibo_login.png') }}"></a>
+                            <a href="{{ route('socialite', ['driver' => 'linkedin']) }}"><img class="login-3rd" src="{{ asset('images/linkedin_login.png') }}"></a>
+                            <a href="{{ route('socialite', ['driver' => 'github']) }}"><img class="login-3rd" src="{{ asset('images/github_login.png') }}"></a>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+    <style>
+        .login-3rd {
+            height: 24px;
+        }
+    </style>
 @endsection

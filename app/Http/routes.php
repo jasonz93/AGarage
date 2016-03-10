@@ -47,29 +47,13 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'auth.register.action'
         ]);
 
-        Route::get('/socialite/linkedin', [
-            'uses' => 'SocialiteController@redirectToLinkedin',
-            'as' => 'socialite.linkedin'
+        Route::get('/socialite/{driver}', [
+            'uses' => 'SocialiteController@redirectTo',
+            'as' => 'socialite'
         ]);
-        Route::get('/socialite/linkedin/callback', [
-            'uses' => 'SocialiteController@handleLinkedinCallback',
-            'as' => 'socialite.linkedin.callback'
-        ]);
-        Route::get('/socialite/github', [
-            'uses' => 'SocialiteController@redirectToGithub',
-            'as' => 'socialite.github'
-        ]);
-        Route::get('/socialite/github/callback', [
-            'uses' => 'SocialiteController@handleGithubCallback',
-            'as' => 'socialite.github.callback'
-        ]);
-        Route::get('/socialite/weibo', [
-            'uses' => 'SocialiteController@redirectToWeibo',
-            'as' => 'socialite.weibo'
-        ]);
-        Route::get('/socialite/weibo/callback', [
-            'uses' => 'SocialiteController@handleWeiboCallback',
-            'as' => 'socialite.weibo.callback'
+        Route::get('/socialite/{driver}/callback', [
+            'uses' => 'SocialiteController@handleCallback',
+            'as' => 'socialite.callback'
         ]);
     });
 
