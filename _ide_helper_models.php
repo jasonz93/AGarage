@@ -90,6 +90,51 @@ namespace AGarage{
 
 namespace AGarage{
 /**
+ * AGarage\GuestbookMessage
+ *
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $content
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \AGarage\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\AGarage\GuestbookReply[] $replies
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookMessage whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookMessage whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookMessage whereContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookMessage whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookMessage whereUpdatedAt($value)
+ */
+	class GuestbookMessage extends \Eloquent {}
+}
+
+namespace AGarage{
+/**
+ * AGarage\GuestbookReply
+ *
+ * @property integer $id
+ * @property integer $user_id
+ * @property integer $message_id
+ * @property integer $parent_id
+ * @property string $content
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \AGarage\User $user
+ * @property-read \AGarage\GuestbookMessage $message
+ * @property-read \AGarage\GuestbookReply $parent
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookReply whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookReply whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookReply whereMessageId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookReply whereParentId($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookReply whereContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookReply whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\GuestbookReply whereUpdatedAt($value)
+ */
+	class GuestbookReply extends \Eloquent {}
+}
+
+namespace AGarage{
+/**
  * AGarage\Permission
  *
  * @property integer $id
@@ -143,6 +188,7 @@ namespace AGarage{
  * @property string $name
  * @property string $nickname
  * @property string $email
+ * @property string $avatar
  * @property string $raw
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -155,6 +201,7 @@ namespace AGarage{
  * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereNickname($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereAvatar($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereRaw($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\SocialiteUser whereUpdatedAt($value)
@@ -168,6 +215,8 @@ namespace AGarage{
  *
  * @property integer $id
  * @property string $nickname
+ * @property string $name
+ * @property string $avatar
  * @property string $email
  * @property string $password
  * @property string $remember_token
@@ -177,6 +226,8 @@ namespace AGarage{
  * @property-read \Illuminate\Database\Eloquent\Collection|\AGarage\Role[] $roles
  * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereNickname($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereAvatar($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereEmail($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\User wherePassword($value)
  * @method static \Illuminate\Database\Query\Builder|\AGarage\User whereRememberToken($value)

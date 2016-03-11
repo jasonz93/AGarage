@@ -93,6 +93,25 @@ Route::group(['middleware' => ['web']], function () {
         ]);
     });
 
+    Route::get('/guestbook', [
+        'uses' => 'GuestbookController@getGuestbook',
+        'as' => 'guestbook'
+    ]);
+    Route::post('/guestbook', [
+        'uses' => 'GuestbookController@postGuestbook',
+        'as' => 'guestbook.post',
+        'middleware' => [
+            'auth'
+        ]
+    ]);
+    Route::post('/guestbook/{message}/reply', [
+        'uses' => 'GuestbookController@postReply',
+        'as' => 'guestbook.reply.post',
+        'middleware' => [
+            'auth'
+        ]
+    ]);
+
     Route::group([
         'namespace' => 'Admin',
         'middleware' => ['admin']

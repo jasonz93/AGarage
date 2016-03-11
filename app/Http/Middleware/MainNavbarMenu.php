@@ -25,6 +25,9 @@ class MainNavbarMenu
             $menu->add(trans('blog.blog'), [
                 'route' => 'blog'
             ]);
+            $menu->add('留言板', [
+                'route' => 'guestbook'
+            ]);
             $menu->add(trans('resume.resume'), [
                 'route' => 'resume'
             ]);

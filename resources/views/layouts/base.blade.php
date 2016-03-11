@@ -15,6 +15,13 @@
 @yield('body')
 
 <script src="{{ asset('js/base.js') }}" type="text/javascript"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    });
+</script>
 
 @yield('javascripts')
 
